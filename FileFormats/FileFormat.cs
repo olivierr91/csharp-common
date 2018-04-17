@@ -1,0 +1,35 @@
+using Common.Utils.Extensions;
+using System;
+using System.Linq;
+
+namespace Common.Utils.FileFormats {
+    public enum FileFormat {
+        [MimeType("image/jpeg")]
+        Jpeg = 0,
+        [MimeType("image/png")]
+        Png = 1,
+        [MimeType("image/bmp")]
+        Bmp = 2,
+        [MimeType("image/gif")]
+        Gif = 3
+    }
+
+    public static class FileFormatExtensions {
+        public static string MimeType(this FileFormat value) {
+            var attribute = value.GetAttributes<MimeTypeAttribute>().First();
+            return attribute.MimeType;
+        }
+    }
+
+
+    [AttributeUsage(AttributeTargets.Field)]
+    public class MimeTypeAttribute : Attribute {
+        private readonly string _mimeType;
+
+        public MimeTypeAttribute(string mimeType) {
+            _mimeType = mimeType;
+        }
+
+        public string MimeType { get => _mimeType; }
+    }
+}
