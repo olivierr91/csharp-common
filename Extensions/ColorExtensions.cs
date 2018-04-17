@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace Common.Utils.Extensions {
+namespace CSharpCommon.Utils.Extensions {
     public static class ColorExtensions
     {
         public static string ToHex(this Color color) {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 
-namespace Common.Utils.Localization {
+namespace CSharpCommon.Utils.Localization {
     public class MultiLangString
     {
         private Dictionary<string, string> _values = new Dictionary<string, string>();

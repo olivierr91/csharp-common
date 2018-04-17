@@ -1,11 +1,11 @@
-﻿using Common.Utils.Localization;
+﻿using CSharpCommon.Utils.Localization;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Resources;
 
-namespace Common.Utils {
+namespace CSharpCommon.Utils {
     public static class ResourceUtils
     {
         public static string GetFileAsString(object caller, string identifier) {

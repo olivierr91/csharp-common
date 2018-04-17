@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Common.Utils.EventHandling {
+namespace CSharpCommon.Utils.EventHandling {
     public class ExtendedEventHandler<T> where T : EventArgs {
         private List<ExtendedEventHandlerSubscriber<T>> _subscribers;
         private List<ExtendedEventHandler<T>> _forwardedHandlers;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Common.Utils {
+namespace CSharpCommon.Utils {
     public class CultureInfoUtils
     {
         public static readonly string[] KNOWN_LOCALE_NAMES = new string[] { "en", "fr" };

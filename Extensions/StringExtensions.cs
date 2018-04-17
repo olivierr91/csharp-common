@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Common.Utils.Extensions {
+namespace CSharpCommon.Utils.Extensions {
     public static class StringExtensions
     {
         public static bool IsValidEmailFormat(this string value) {

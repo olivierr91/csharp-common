@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Utils {
+namespace CSharpCommon.Utils {
     public interface IReusable : IDisposable
     {
         void Init();

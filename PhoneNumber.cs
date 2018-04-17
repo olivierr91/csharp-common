@@ -1,5 +1,5 @@
-﻿using Common.Utils.Extensions;
-using Common.Utils;
+﻿using CSharpCommon.Utils.Extensions;
+using CSharpCommon.Utils;
 using System;
 
 namespace SitkaWebApp.Server.Core.Domain.Contact {

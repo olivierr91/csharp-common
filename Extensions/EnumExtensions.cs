@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using Common.Utils;
-using Common.Utils.Localization;
+using CSharpCommon.Utils;
+using CSharpCommon.Utils.Localization;
 
-namespace Common.Utils.Extensions {
+namespace CSharpCommon.Utils.Extensions {
     public static class EnumExtensions
     {
         public static bool HasAttribute<TAttribute>(this Enum value) where TAttribute : Attribute {

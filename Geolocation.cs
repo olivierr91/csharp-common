@@ -1,8 +1,8 @@
-﻿using Common.Utils.Extensions;
-using Common.Utils;
+﻿using CSharpCommon.Utils.Extensions;
+using CSharpCommon.Utils;
 using System;
 
-namespace Common.Utils {
+namespace CSharpCommon.Utils {
     public class Geolocation {
         private string _addressLine1;
         private string _addressLine2;

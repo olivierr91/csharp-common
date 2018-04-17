@@ -1,4 +1,4 @@
-﻿namespace Common.Utils {
+﻿namespace CSharpCommon.Utils {
     public enum SortOrder
     {
         None = 0,

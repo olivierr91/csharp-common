@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace Common.Utils {
+namespace CSharpCommon.Utils {
     public static class ColorUtils
     {
         public static Color FromHex(string hex) {

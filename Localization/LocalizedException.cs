@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Utils.Localization {
+namespace CSharpCommon.Utils.Localization {
     public class LocalizedException : Exception
     {
         public string LocalizedMessage { get; }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Common.Utils.Extensions {
+namespace CSharpCommon.Utils.Extensions {
     public static class ListExtensions
     {
         public static void Add<T>(this List<T> list, params T[] items) {

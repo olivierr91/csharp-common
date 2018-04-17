@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Common.Utils.Extensions {
+namespace CSharpCommon.Utils.Extensions {
     public static class DictionaryExtensions
     {
         public static T2 GetOrDefault<T1, T2>(this IDictionary<T1, T2> dictionary, T1 key) {

@@ -1,8 +1,8 @@
-using Common.Utils.Extensions;
+using CSharpCommon.Utils.Extensions;
 using System;
 using System.Linq;
 
-namespace Common.Utils.FileFormats {
+namespace CSharpCommon.Utils.FileFormats {
     public enum FileFormat {
         [MimeType("image/jpeg")]
         Jpeg = 0,

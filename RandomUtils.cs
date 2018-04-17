@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Common.Utils {
+namespace CSharpCommon.Utils {
     public static class RandomUtils
     {
         public static readonly Random _random = new Random();

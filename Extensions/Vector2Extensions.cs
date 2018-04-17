@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Common.Utils {
+namespace CSharpCommon.Utils {
     public static class Vector2Extensions
     {
 

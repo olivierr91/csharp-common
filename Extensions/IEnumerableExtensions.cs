@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Common.Utils.Extensions {
+namespace CSharpCommon.Utils.Extensions {
     public static class IEnumerableExtensions
     {
         public static void ForEach<T>(this IEnumerable<T> source, Action<T> action) {
