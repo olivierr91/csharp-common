@@ -17,7 +17,7 @@ namespace CSharpCommon.Utils {
             }
         }
 
-        public static string GetString(object caller, string identifier, string defaultString) {
+        public static string GetString(object caller, string identifier, string defaultString = null) {
             return GetString(caller, identifier, defaultString, CultureInfo.CurrentCulture);
         }
 
@@ -30,7 +30,7 @@ namespace CSharpCommon.Utils {
             }
         }
 
-        public static LocalizedString GetLocalizedString(object caller, string identifier, string defaultString) {
+        public static LocalizedString GetLocalizedString(object caller, string identifier, string defaultString = null) {
             string defaultValue = defaultString;
             string localizedValue = GetString(caller, identifier, defaultString);
             return new LocalizedString(defaultValue, localizedValue);

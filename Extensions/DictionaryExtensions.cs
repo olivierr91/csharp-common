@@ -5,6 +5,10 @@ using System.Linq;
 namespace CSharpCommon.Utils.Extensions {
     public static class DictionaryExtensions
     {
+        public static Dictionary<T1, T2> CopyIntersectWith<T1, T2>(this Dictionary<T1, T2> dictionary, IEnumerable<T1> keys) {
+            return dictionary.Keys.Intersect(keys).ToDictionary(v => v, v => dictionary[v]);
+        }
+
         public static T2 GetOrDefault<T1, T2>(this IDictionary<T1, T2> dictionary, T1 key) {
             if (dictionary.ContainsKey(key)) {
                 return dictionary[key];
@@ -14,13 +18,36 @@ namespace CSharpCommon.Utils.Extensions {
         }
 
         public static void AddOrReplace<T1, T2>(this IDictionary<T1, T2> dictionary, T1 key, T2 value){
-            if (dictionary.ContainsKey(key))
-            {
+            if (dictionary.ContainsKey(key)) {
                 dictionary[key] = value;
-            }
-            else
-            {
+            } else {
                 dictionary.Add(key, value);
+            }
+        }
+
+        public static T2 AddIfNotExists<T1, T2>(this Dictionary<T1, T2> dictionary, T1 key, T2 value) {
+            if (!dictionary.ContainsKey(key)) {
+                dictionary.Add(key, value);
+                return value;
+            } else {
+                return dictionary[key];
+            }
+        }
+
+        public static void AddToList<T1, T2>(this Dictionary<T1, List<T2>> dictionary, T1 key, T2 value) {
+            List<T2> list;
+            if (dictionary.ContainsKey(key)) {
+                list = dictionary[key];
+            } else {
+                list = new List<T2>();
+                dictionary.Add(key, list);
+            }
+            list.Add(value);
+        }
+
+        public static void Merge<T1, T2>(this Dictionary<T1, T2> dictionary, Dictionary<T1, T2> otherDictionary) {
+            foreach (KeyValuePair<T1, T2> entry in otherDictionary) {
+                dictionary[entry.Key] = entry.Value;
             }
         }
 
@@ -30,5 +57,12 @@ namespace CSharpCommon.Utils.Extensions {
                 dictionary.Remove(key);
             }
         }
+
+        public static void ForEach<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, Action<KeyValuePair<TKey, TValue>> action) {
+            foreach (KeyValuePair<TKey, TValue> keyValuePair in dictionary) {
+                action(keyValuePair);
+            }
+        }
+
     }
 }

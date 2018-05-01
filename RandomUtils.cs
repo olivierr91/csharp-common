@@ -14,8 +14,22 @@ namespace CSharpCommon.Utils {
             return new String(stringChars);
         }
 
+        public static int Next() {
+            lock (_random) {
+                return _random.Next();
+            }
+        }
+
+        public static int Next(int maxValue) {
+            lock (_random) {
+                return _random.Next(maxValue);
+            }
+        }
+
         public static int RandomInt(int min, int max) {
-            return _random.Next(min, max + 1);
+            lock (_random) {
+                return _random.Next(min, max + 1);
+            }
         }
 
         public static string RandomLowercaseAlphaString(int length) {
@@ -32,11 +46,15 @@ namespace CSharpCommon.Utils {
 
         public static T RandomEnum<T>() {
             Array values = Enum.GetValues(typeof(T));
-            return (T)values.GetValue(_random.Next(values.Length));
+            lock (_random) {
+                return (T)values.GetValue(_random.Next(values.Length));
+            }
         }
 
         public static T RandomItem<T>(IList<T> values) {
-            return (T)values[_random.Next(values.Count)];
+            lock (_random) {
+                return (T)values[_random.Next(values.Count)];
+            }
         }
     }
 }
