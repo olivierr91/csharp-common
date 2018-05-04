@@ -1,5 +1,6 @@
 ﻿using CSharpCommon.Utils.Localization;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -9,7 +10,7 @@ namespace CSharpCommon.Utils {
     public static class ResourceUtils
     {
         public static string GetFileAsString(object caller, string identifier) {
-            ResourceSet resourceSet = GetResourceSet(caller);
+            ResourceSet resourceSet = GetResourceSetOrInvariant(caller);
             object resource = resourceSet.GetObject(identifier);
             using (var memoryStream = new MemoryStream((byte[])resource))
             using (var streamReader = new StreamReader(memoryStream)) {
@@ -17,48 +18,59 @@ namespace CSharpCommon.Utils {
             }
         }
 
-        public static string GetString(object caller, string identifier, string defaultString = null) {
-            return GetString(caller, identifier, defaultString, CultureInfo.CurrentCulture);
+        public static string GetString(object caller, string identifier) {
+            return GetString(caller, identifier, CultureInfo.CurrentCulture);
         }
 
-        public static string GetString(object caller, string identifier, string defaultString, CultureInfo locale) {
-            ResourceSet resourceSet = GetResourceSet(caller, locale);
-            if (resourceSet != null) {
-                return resourceSet.GetString(identifier) ?? defaultString;
-            } else {
-                return defaultString;
-            }
+        public static string GetString(object caller, string identifier, CultureInfo locale) {
+            ResourceSet resourceSet = GetResourceSetOrInvariant(caller, locale);
+            return resourceSet.GetString(identifier);
         }
 
-        public static LocalizedString GetLocalizedString(object caller, string identifier, string defaultString = null) {
-            string defaultValue = defaultString;
-            string localizedValue = GetString(caller, identifier, defaultString);
-            return new LocalizedString(defaultValue, localizedValue);
+        public static LocalizedString GetLocalizedString(object caller, string identifier) {
+            string neutralValue = GetString(caller, identifier, CultureInfo.InvariantCulture);
+            string localizedValue = GetString(caller, identifier);
+            return new LocalizedString(neutralValue, localizedValue);
         }
 
-        public static LocalizedString GetLocalizedString(object caller, string identifier, string defaultString, params object[] formatArguments) {
-            LocalizedString value = GetLocalizedString(caller, identifier, defaultString);
-            string formattedDefaultValue = String.Format(CultureInfo.CurrentCulture, value.DefaultValue, formatArguments);
+        public static LocalizedString GetLocalizedString(object caller, string identifier, params object[] formatArguments) {
+            LocalizedString value = GetLocalizedString(caller, identifier);
+            string formattedNeutralValue = String.Format(CultureInfo.CurrentCulture, value.NeutralValue, formatArguments);
             string formattedLocalizedValue = String.Format(CultureInfo.CurrentCulture, value.LocalizedValue, formatArguments);
-            return new LocalizedString(formattedDefaultValue, formattedLocalizedValue);
+            return new LocalizedString(formattedNeutralValue, formattedLocalizedValue);
         }
 
-        public static MultiLangString GetMultiLangString(object caller, string identifier, string defaultString, string[] localeNames = null) {
-            var multiLangString = new MultiLangString(defaultString);
-            localeNames = localeNames ?? CultureInfoUtils.KNOWN_LOCALE_NAMES;
-            foreach (var locale in localeNames) {
-                multiLangString.AddLocalization(GetString(caller, identifier, defaultString, new CultureInfo(locale)), locale);
+        public static MultiLangString GetMultiLangString(object caller, string identifier, string[] localeNames = null) {
+            var multiLangString = new MultiLangString();
+            Dictionary<CultureInfo, ResourceSet> resourceSets = GetResourceSets(caller);
+            foreach (var resourceSet in resourceSets) {
+                multiLangString.AddLocalization(resourceSet.Value.GetString(identifier), resourceSet.Key);
             }
             return multiLangString;
         }
 
-        private static ResourceSet GetResourceSet(object caller) {
-            return GetResourceSet(caller, CultureInfo.CurrentCulture);
+        private static ResourceSet GetResourceSetOrInvariant(object caller) {
+            return GetResourceSetOrInvariant(caller, CultureInfo.CurrentCulture);
         }
 
-        private static ResourceSet GetResourceSet(object caller, CultureInfo locale) {
-            ResourceManager resourceManager = new ResourceManager(caller.GetType().FullName, Assembly.GetAssembly(caller.GetType()));
-            return resourceManager.GetResourceSet(locale, true, false);
+        private static ResourceSet GetResourceSetOrInvariant(object caller, CultureInfo locale) {
+            var resourceManager = GetResourceManager(caller);
+            return resourceManager.GetResourceSet(locale, true, false) ?? resourceManager.GetResourceSet(CultureInfo.InvariantCulture, true, false);
+        }
+
+        private static Dictionary<CultureInfo, ResourceSet> GetResourceSets(object caller) {
+            var resourceManager = GetResourceManager(caller);
+            var resourceSets = new Dictionary<CultureInfo, ResourceSet>();
+            foreach (CultureInfo culture in CultureInfo.GetCultures(CultureTypes.AllCultures)) {
+                try {
+                    resourceSets.Add(culture, resourceManager.GetResourceSet(culture, true, false));
+                } catch { }
+            }
+            return resourceSets;
+        }
+
+        private static ResourceManager GetResourceManager(object caller) {
+            return new ResourceManager(caller.GetType().FullName, Assembly.GetAssembly(caller.GetType()));
         }
     }
 }

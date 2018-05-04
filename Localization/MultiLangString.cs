@@ -1,71 +1,57 @@
-﻿using System.Collections.Generic;
+﻿using CSharpCommon.Utils.Extensions;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace CSharpCommon.Utils.Localization {
     public class MultiLangString
     {
-        private Dictionary<string, string> _values = new Dictionary<string, string>();
+        private Dictionary<CultureInfo, string> _values = new Dictionary<CultureInfo, string>();
 
-        public MultiLangString(string defaultValue) {
-            DefaultValue = defaultValue;
+        public MultiLangString() {
+            
         }
 
-        public MultiLangString(string defaultValue, Dictionary<string, string> values) : this(defaultValue) {
+        public MultiLangString(params (string, string)[] values) {
+            foreach ((string, string) value in values) {
+                _values.Add(CultureInfo.GetCultureInfo(value.Item1), value.Item2);
+            }
+        }
+
+        public MultiLangString(Dictionary<string, string> values) {
+            foreach(KeyValuePair<string, string> value in values) {
+                _values.Add(CultureInfo.GetCultureInfo(value.Key), value.Value);
+            }
+        }
+
+        public MultiLangString(Dictionary<CultureInfo, string> values) {
             _values = values;
         }
 
-        public Dictionary<string, string> Values { get => _values; }
+        public Dictionary<CultureInfo, string> Values { get => _values; }
 
-        public string DefaultValue { get; set; }
-
-        public LocalizedString LocalizedString {
-            get => GetLocalizedString(CultureInfo.CurrentCulture.Name);
-        }
-
-        public void AddLocalization(string value, string locale) {
+        public void AddLocalization(string value, CultureInfo locale) {
             _values[locale] = value;
         }
 
-        public LocalizedString GetLocalizedString(string locale) {
-            string localizedValue = null;
-            if (_values.ContainsKey(locale)) {
-                localizedValue = _values[locale];
-            } else {
-                localizedValue = DefaultValue;
-            }
-            return new LocalizedString(DefaultValue, localizedValue);
+        public string Get(CultureInfo locale) {
+            return _values[locale];
+        }
+
+        public string GetOrDefault(CultureInfo locale) {
+            return _values.GetOrDefault(locale) ?? _values.GetOrDefault(CultureInfo.InvariantCulture);
         }
 
         public override string ToString() {
-            return ToString(CultureInfo.CurrentCulture.Name);
+            return GetOrDefault(CultureInfo.CurrentCulture);
         }
 
-        public string ToString(string locale, bool fallbackToDefault = true) {
-            if (_values.ContainsKey(locale)) {
-                return _values[locale];
-            } else if (fallbackToDefault) {
-                return DefaultValue;
-            } else {
-                return null;
-            }
-        }
-
-        public static MultiLangString Merge(MultiLangString multiLangString, string value, string locale) {
+        public static MultiLangString Merge(MultiLangString multiLangString, string value, CultureInfo locale) {
             if (value == null) {
                 return multiLangString;
             } else if (multiLangString == null) {
-                multiLangString = new MultiLangString(value);
+                multiLangString = new MultiLangString();
             }
             multiLangString.AddLocalization(value, locale);
-            return multiLangString;
-        }
-
-        public static MultiLangString MergeDefault(MultiLangString multiLangString, string value, string locale) {
-            if (value == null) {
-                return multiLangString;
-            }
-            multiLangString = Merge(multiLangString, value, locale);
-            multiLangString.DefaultValue = value;
             return multiLangString;
         }
     }

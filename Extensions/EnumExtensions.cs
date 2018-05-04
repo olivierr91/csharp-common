@@ -1,10 +1,9 @@
-﻿using System;
+﻿using CSharpCommon.Utils.Localization;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
-using CSharpCommon.Utils;
-using CSharpCommon.Utils.Localization;
 
 namespace CSharpCommon.Utils.Extensions {
     public static class EnumExtensions
@@ -30,13 +29,11 @@ namespace CSharpCommon.Utils.Extensions {
         }
 
         public static string GetDisplayName(this Enum value, CultureInfo locale) {
-            string defaultDisplayName = value.GetAttributes<DisplayNameAttribute>().FirstOrDefault()?.DisplayName;
-            return ResourceUtils.GetString(value, value.ToString(), defaultDisplayName, locale);
+            return ResourceUtils.GetString(value, value.ToString(), locale);
         }
 
         public static MultiLangString GetMultiLangDisplayName(this Enum value, string[] localeNames = null) {
-            string englishDisplayName = value.GetAttributes<DisplayNameAttribute>().FirstOrDefault()?.DisplayName;
-            return ResourceUtils.GetMultiLangString(value, value.ToString(), englishDisplayName, localeNames);
+            return ResourceUtils.GetMultiLangString(value, value.ToString(), localeNames);
         }
     }
 }

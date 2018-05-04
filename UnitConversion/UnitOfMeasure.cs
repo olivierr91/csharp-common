@@ -1,17 +1,19 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace CSharpCommon.Utils.UnitConversion {
 
     public enum UnitOfMeasure {
-        [DisplayName("Meter")]
+        [Display(Name = "Meter")]
         Meter = 0,
-        [DisplayName("Yards")]
+        [Display(Name = "Yards")]
         Yards = 1,
-        [DisplayName("Feet")]
+        [Display(Name = "Feet")]
         Feet = 2,
-        [DisplayName("Inches")]
+        [Display(Name = "Inches")]
         Inches = 3,
-        [DisplayName("Centimeters")]
+        [Display(Name = "Centimeters")]
         Centimeters = 4,
-        [DisplayName("Millimeters")]
+        [Display(Name = "Millimeters")]
         Millimeters = 5
     }
 

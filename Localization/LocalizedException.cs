@@ -14,12 +14,12 @@ namespace CSharpCommon.Utils.Localization {
 
         }
 
-        public LocalizedException(LocalizedString localizedMessage) : base(localizedMessage.DefaultValue) {
+        public LocalizedException(LocalizedString localizedMessage) : base(localizedMessage.NeutralValue) {
             LocalizedString = localizedMessage;
             LocalizedMessage = localizedMessage.LocalizedValue;
         }
 
-        public LocalizedException(LocalizedString localizedMessage, Exception ex) : base(localizedMessage.DefaultValue, ex) {
+        public LocalizedException(LocalizedString localizedMessage, Exception ex) : base(localizedMessage.NeutralValue, ex) {
             LocalizedString = localizedMessage;
             LocalizedMessage = localizedMessage.LocalizedValue;
         }

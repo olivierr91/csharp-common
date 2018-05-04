@@ -1,12 +1,12 @@
 ﻿namespace CSharpCommon.Utils.Localization {
     public class LocalizedString
     {
-        public LocalizedString(string defaultValue, string localizedValue) {
-            DefaultValue = defaultValue;
+        public LocalizedString(string neutralValue, string localizedValue) {
+            NeutralValue = neutralValue;
             LocalizedValue = localizedValue;
         }
 
-        public string DefaultValue { get; set; }
+        public string NeutralValue { get; set; }
         public string LocalizedValue { get; set; }
     }
 }
