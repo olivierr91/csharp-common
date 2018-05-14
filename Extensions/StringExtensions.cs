@@ -68,6 +68,10 @@ namespace CSharpCommon.Utils.Extensions {
             return Regex.Replace(value, @"\s+", "", RegexOptions.Compiled);
         }
 
+        public static string ReplaceWhitespaces(this string value, string replaceWidth) {
+            return Regex.Replace(value, @"\s+", replaceWidth, RegexOptions.Compiled);
+        }
+
         public static string ReplaceMultiWhitespaceWithSingleSpace(this string value) {
             return Regex.Replace(value, @"\s+", " ");
         }

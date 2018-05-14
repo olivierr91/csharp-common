@@ -4,6 +4,8 @@ using System.Linq;
 
 namespace CSharpCommon.Utils.FileFormats {
     public enum FileFormat {
+        [MimeType("application/octet-stream")]
+        Unknown = 0,
         [MimeType("image/jpeg")]
         Jpeg = 0,
         [MimeType("image/png")]
@@ -11,7 +13,13 @@ namespace CSharpCommon.Utils.FileFormats {
         [MimeType("image/bmp")]
         Bmp = 2,
         [MimeType("image/gif")]
-        Gif = 3
+        Gif = 3,
+        [MimeType("application/pdf")]
+        Pdf = 4,
+        [MimeType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")]
+        Xlsx = 5,
+        [MimeType("text/html")]
+        Html = 6
     }
 
     public static class FileFormatExtensions {

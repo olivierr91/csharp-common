@@ -2,7 +2,7 @@
 using CSharpCommon.Utils;
 using System;
 
-namespace SitkaWebApp.Server.Core.Domain.Contact {
+namespace CSharpCommon.Utils {
     public class PhoneNumber
     {
         public PhoneNumber(string number, string extension = null) {

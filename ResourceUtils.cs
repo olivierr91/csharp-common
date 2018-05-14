@@ -18,26 +18,38 @@ namespace CSharpCommon.Utils {
             }
         }
 
+        public static LocalizedString FormatLocalizedString(object caller, string identifier, params object[] formatArguments) {
+            LocalizedString value = GetLocalizedString(caller, identifier);
+            string formattedNeutralValue = String.Format(CultureInfo.CurrentCulture, value.NeutralValue, formatArguments);
+            string formattedLocalizedValue = String.Format(CultureInfo.CurrentCulture, value.LocalizedValue, formatArguments);
+            return new LocalizedString(formattedNeutralValue, formattedLocalizedValue);
+        }
+
+        public static string FormatString(object caller, string identifier, params object[] formatArguments) {
+            return String.Format(GetString(caller, identifier), formatArguments);
+        }
+
         public static string GetString(object caller, string identifier) {
             return GetString(caller, identifier, CultureInfo.CurrentCulture);
         }
 
         public static string GetString(object caller, string identifier, CultureInfo locale) {
             ResourceSet resourceSet = GetResourceSetOrInvariant(caller, locale);
-            return resourceSet.GetString(identifier);
+            try {
+                return resourceSet.GetString(identifier);
+            } catch (Exception) {
+#if DEBUG
+                throw;
+#else
+                return "???";
+#endif
+            }
         }
 
         public static LocalizedString GetLocalizedString(object caller, string identifier) {
             string neutralValue = GetString(caller, identifier, CultureInfo.InvariantCulture);
             string localizedValue = GetString(caller, identifier);
             return new LocalizedString(neutralValue, localizedValue);
-        }
-
-        public static LocalizedString GetLocalizedString(object caller, string identifier, params object[] formatArguments) {
-            LocalizedString value = GetLocalizedString(caller, identifier);
-            string formattedNeutralValue = String.Format(CultureInfo.CurrentCulture, value.NeutralValue, formatArguments);
-            string formattedLocalizedValue = String.Format(CultureInfo.CurrentCulture, value.LocalizedValue, formatArguments);
-            return new LocalizedString(formattedNeutralValue, formattedLocalizedValue);
         }
 
         public static MultiLangString GetMultiLangString(object caller, string identifier, string[] localeNames = null) {
