@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.Resources;
 
-namespace CSharpCommon.Utils {
+namespace CSharpCommon.Utils.Resources {
     public static class ResourceUtils
     {
         public static string GetFileAsString(object caller, string identifier) {
@@ -36,13 +36,13 @@ namespace CSharpCommon.Utils {
         public static string GetString(object caller, string identifier, CultureInfo locale) {
             ResourceSet resourceSet = GetResourceSetOrInvariant(caller, locale);
             try {
-                return resourceSet.GetString(identifier);
-            } catch (Exception) {
-#if DEBUG
-                throw;
-#else
-                return "???";
-#endif
+                return resourceSet?.GetString(identifier) ?? throw new ResourceNotFoundException($"Resource '{identifier}' in '{caller}' could not be found for locale '{locale}'.");
+            } catch (ResourceNotFoundException) {
+                if (locale != CultureInfo.InvariantCulture) {
+                    return GetString(caller, identifier, CultureInfo.InvariantCulture);
+                } else {
+                    return "???";
+                }
             }
         }
 

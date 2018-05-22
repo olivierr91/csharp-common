@@ -61,6 +61,10 @@ namespace CSharpCommon.Utils.Extensions {
         }
 
         public static string RemoveNonAlphaNumerics(this string value) {
+            return Regex.Replace(value, @"[^0-9\w]", "", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        }
+
+        public static string RemoveNonAlphaNumericsOrNonWhitespaces(this string value) {
             return Regex.Replace(value, @"[^0-9\w\s]", "", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         }
 

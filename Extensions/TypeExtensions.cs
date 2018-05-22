@@ -8,7 +8,7 @@ namespace CSharpCommon.Utils.Extensions {
             return type == typeof(T[]);
         }
 
-        public static bool IsSimpleType(this Type type) {
+        public static bool IsNonNullableSimpleType(this Type type) {
             return
                 type.IsValueType ||
                 type.IsPrimitive ||
@@ -21,6 +21,32 @@ namespace CSharpCommon.Utils.Extensions {
                     typeof(Guid)
                 }.Contains(type) ||
                 Convert.GetTypeCode(type) != TypeCode.Object;
+        }
+
+        public static bool IsNonNullableNumericType(this Type type) {
+            return new Type[] {
+                    typeof(short),
+                    typeof(int),
+                    typeof(long),
+                    typeof(decimal),
+                    typeof(float),
+                    typeof(double)
+                }.Contains(type);
+        }
+
+        public static bool IsNullableNumericType(this Type type) {
+            return new Type[] {
+                    typeof(short?),
+                    typeof(int?),
+                    typeof(long?),
+                    typeof(decimal?),
+                    typeof(float?),
+                    typeof(double?)
+                }.Contains(type);
+        }
+
+        public static bool IsNumericType(this Type type) {
+            return IsNonNullableNumericType(type) || IsNullableNumericType(type);
         }
 
         public static bool IsICollection(this Type type) {
