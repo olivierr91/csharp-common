@@ -117,30 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BoardFeet" xml:space="preserve">
-    <value>Board Feet</value>
-  </data>
-  <data name="Centimeters" xml:space="preserve">
-    <value>Centimeters</value>
-  </data>
-  <data name="CubicFeet" xml:space="preserve">
-    <value>Cubic Feet</value>
-  </data>
-  <data name="CubicMeters" xml:space="preserve">
-    <value>Cubic Meters</value>
-  </data>
-  <data name="Feet" xml:space="preserve">
-    <value>Feet</value>
-  </data>
-  <data name="Inches" xml:space="preserve">
-    <value>Inches</value>
-  </data>
-  <data name="Meters" xml:space="preserve">
-    <value>Meters</value>
-  </data>
-  <data name="Millimeters" xml:space="preserve">
-    <value>Millimeters</value>
-  </data>
   <data name="SquareFeet" xml:space="preserve">
     <value>Square Feet</value>
   </data>
@@ -149,8 +125,5 @@
   </data>
   <data name="SquareMeters" xml:space="preserve">
     <value>Square Meters</value>
-  </data>
-  <data name="Yards" xml:space="preserve">
-    <value>Yards</value>
   </data>
 </root>

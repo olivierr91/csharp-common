@@ -18,8 +18,8 @@ namespace CSharpCommon.Utils {
             }
         }
 
-        public static bool IsInteger(float value) {
-            return value == Math.Floor(value);
+        public static bool IsWhole(decimal value) {
+            return value % 1 == 0;
         }
 
         public static bool IsInRange(float value, float minimum, float maximum) {
