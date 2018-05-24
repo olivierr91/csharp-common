@@ -35,6 +35,10 @@ namespace CSharpCommon.Utils.Extensions {
                 return default(T2);
             }
         }
+        public static bool DictionaryEquals<T1, T2>(this IReadOnlyDictionary<T1, T2> dictionary, IReadOnlyDictionary<T1, T2> otherDictionary) {
+            return (dictionary == otherDictionary) || (dictionary.Count == otherDictionary.Count && !dictionary.Except(otherDictionary).Any());
+        }
+
 
         public static void Merge<T1, T2>(this IDictionary<T1, T2> dictionary, IReadOnlyDictionary<T1, T2> otherDictionary) {
             foreach (KeyValuePair<T1, T2> entry in otherDictionary) {

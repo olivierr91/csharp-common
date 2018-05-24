@@ -27,12 +27,8 @@ namespace CSharpCommon.Utils.Units
         }
 
         public static decimal operator /(Volume value1, Volume value2) {
-            var commonValue = MakeCommon(value1, value2);
+            var commonValue = MakeCommonValue(value1, value2);
             return commonValue.value1 / commonValue.value2;
-        }
-
-        public Volume ToBoardFeet() {
-            return new Volume(UnitConverter.Convert(_value, _units, VolumeUnits.BoardFeet), VolumeUnits.BoardFeet);
         }
     }
 }

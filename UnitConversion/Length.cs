@@ -1,11 +1,16 @@
-﻿
-using CSharpCommon.Utils.Extensions;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
-namespace CSharpCommon.Utils.Units
-{
+namespace CSharpCommon.Utils.Units {
     public class Length : UnitAwareValue
     {
+        private static readonly Dictionary<(Enum value1Source, Enum value2Source), (Enum value1Target, Enum value2Target, Enum result)> NON_LOSSY_MULTIPLICATIONS = new Dictionary<(Enum, Enum), (Enum, Enum, Enum)>() {
+            { (LengthUnits.Feet, LengthUnits.Feet), (LengthUnits.Feet, LengthUnits.Feet, AreaUnits.SquareFeet) },
+            { (LengthUnits.Feet, LengthUnits.Inches), (LengthUnits.Inches, LengthUnits.Inches, AreaUnits.SquareInches) },
+            { (LengthUnits.Inches, LengthUnits.Feet), (LengthUnits.Inches, LengthUnits.Inches, AreaUnits.SquareFeet) },
+            { (LengthUnits.Inches, LengthUnits.Inches), (LengthUnits.Inches, LengthUnits.Inches, AreaUnits.SquareInches) },
+        };
+
         private LengthUnits _units;
 
         public Length(decimal value, LengthUnits units): base(value, units) {
@@ -18,9 +23,9 @@ namespace CSharpCommon.Utils.Units
         public Length ConvertTo(LengthUnits targetUnits) {
             return new Length(UnitConverter.Convert(_value, _units, targetUnits), targetUnits);
         }
-
+    
         public static bool operator ==(Length value1, Length value2) {
-            var commonValue = MakeCommon(value1, value2);
+            var commonValue = MakeCommonValue(value1, value2);
             return commonValue.value1 == commonValue.value2;
         }
 
@@ -29,30 +34,23 @@ namespace CSharpCommon.Utils.Units
         }
 
         public static Area operator *(Length value1, Length value2) {
-            var commonValue = MakeCommon(value1, value2);
-            AreaUnits units;
-            switch (commonValue.commonUnit) {
-                case LengthUnits.Meters:
-                    units = AreaUnits.SquareMeters;
-                    break;
-                case LengthUnits.Feet:
-                    units = AreaUnits.SquareFeet;
-                    break;
-                case LengthUnits.Inches:
-                    units = AreaUnits.SquareInches;
-                    break;
-                default:
-                    throw new NotImplementedException($"Length multiplication of {value1.Units}, {value2.Units} is not defined.");
-            }
-            return new Area(commonValue.value1 * commonValue.value2, units);
+            var multiplicationDefinition = NON_LOSSY_MULTIPLICATIONS[(value1.Units, value2.Units)];
+            value1 = value1.ConvertTo((LengthUnits)multiplicationDefinition.value1Target);
+            value2 = value2.ConvertTo((LengthUnits)multiplicationDefinition.value2Target);
+            return new Area(value1.Value * value2.Value, (AreaUnits)multiplicationDefinition.result);
         }
 
-        public Length ToFeet() {
-            return new Length(UnitConverter.Convert(_value, _units, LengthUnits.Feet), LengthUnits.Feet);
+        public override int GetHashCode() {
+            return new HashCodeBuilder().Add(_value).Add(_units).GetHashCode();
         }
 
-        public Length ToInches() {
-            return new Length(UnitConverter.Convert(_value, _units, LengthUnits.Inches), LengthUnits.Inches);
+        public override bool Equals(Object obj) {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Length length = (Length)obj;
+            var commonValue = MakeCommonValue(this, length);
+            return commonValue.value1 == commonValue.value2;
         }
     }
 }
