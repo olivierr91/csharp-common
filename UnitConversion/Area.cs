@@ -7,7 +7,7 @@ namespace CSharpCommon.Utils.Units
     {
         private AreaUnits _units;
 
-        public Area(decimal value, AreaUnits units): base(value, (UnitOfMeasure)units) {
+        public Area(decimal value, AreaUnits units): base(value, units) {
             _value = value;
             _units = units;
         }
@@ -24,6 +24,10 @@ namespace CSharpCommon.Utils.Units
                     break;
                 case AreaUnits.SquareMeters:
                     value = value1.Value * value2.ConvertTo(LengthUnits.Meters).Value;
+                    units = VolumeUnits.CubicMeters;
+                    break;
+                case AreaUnits.SquareInches:
+                    value = value1.Value * value2.ConvertTo(LengthUnits.Inches).Value;
                     units = VolumeUnits.CubicMeters;
                     break;
                 default:

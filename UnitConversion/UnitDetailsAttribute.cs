@@ -3,10 +3,10 @@
 namespace CSharpCommon.Utils.Units {
 
     public class UnitDetailsAttribute : Attribute {
-        public double IntermediateUnitConversionFactor { get; }
+        public int BaseUnitValue { get; }
 
-        public UnitDetailsAttribute(double siUnitConversionFactor) {
-            IntermediateUnitConversionFactor = siUnitConversionFactor;
+        public UnitDetailsAttribute(int baseUnitValue) {
+            BaseUnitValue = baseUnitValue;
         }
     }
 }

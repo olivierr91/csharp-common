@@ -7,7 +7,7 @@ namespace CSharpCommon.Utils.Units
     {
         private VolumeUnits _units;
 
-        public Volume(decimal value, VolumeUnits units): base(value, (UnitOfMeasure)units) {
+        public Volume(decimal value, VolumeUnits units): base(value, units) {
             _value = value;
             _units = units;
         }
@@ -15,7 +15,7 @@ namespace CSharpCommon.Utils.Units
         public VolumeUnits Units { get => _units; }
 
         public Volume ConvertTo(VolumeUnits targetUnits) {
-            return new Volume(UnitConverter.Convert(_value, (UnitOfMeasure)_units, (UnitOfMeasure)targetUnits), targetUnits);
+            return new Volume(UnitConverter.Convert(_value, _units, targetUnits), targetUnits);
         }
 
         public static Volume operator *(Volume value1, decimal value2) {
@@ -27,11 +27,12 @@ namespace CSharpCommon.Utils.Units
         }
 
         public static decimal operator /(Volume value1, Volume value2) {
-            return value1.Value / value2.ConvertTo(value1.Units).Value;
+            var commonValue = MakeCommon(value1, value2);
+            return commonValue.value1 / commonValue.value2;
         }
 
         public Volume ToBoardFeet() {
-            return new Volume(UnitConverter.Convert(_value, (UnitOfMeasure)_units, (UnitOfMeasure)VolumeUnits.BoardFeet), VolumeUnits.BoardFeet);
+            return new Volume(UnitConverter.Convert(_value, _units, VolumeUnits.BoardFeet), VolumeUnits.BoardFeet);
         }
     }
 }
