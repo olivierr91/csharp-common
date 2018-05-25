@@ -6,7 +6,9 @@ namespace CSharpCommon.Utils.Units
 {
     public class Area : UnitAwareValue
     {
-        private static readonly Dictionary<(Enum value1Source, Enum value2Source), (Enum value1Target, Enum value2Target, Enum result)> EXACT_MULTIPLICATIONS = new Dictionary<(Enum, Enum), (Enum, Enum, Enum)>() {
+
+        private static readonly Dictionary<(Enum value1Source, Enum value2Source), (Enum value1Target, Enum value2Target, Enum result)> MULTIPLICATIONS_DEFINITIONS 
+            = new Dictionary<(Enum, Enum), (Enum, Enum, Enum)>() {
             { (AreaUnits.SquareFeet, LengthUnits.Feet), (AreaUnits.SquareFeet, LengthUnits.Feet, VolumeUnits.CubicFeet) },
             { (AreaUnits.SquareFeet, LengthUnits.Inches), (AreaUnits.SquareInches, LengthUnits.Inches, VolumeUnits.CubicInches) },
             { (AreaUnits.SquareInches, LengthUnits.Feet), (AreaUnits.SquareInches, LengthUnits.Inches, VolumeUnits.CubicInches) },
@@ -27,7 +29,7 @@ namespace CSharpCommon.Utils.Units
         }
     
         public static Volume operator *(Area value1, Length value2) {
-            var multiplicationDefinition = EXACT_MULTIPLICATIONS[(value1.Units, value2.Units)];
+            var multiplicationDefinition = MULTIPLICATIONS_DEFINITIONS[(value1.Units, value2.Units)];
             value1 = value1.ConvertTo((AreaUnits)multiplicationDefinition.value1Target);
             value2 = value2.ConvertTo((LengthUnits)multiplicationDefinition.value2Target);
             return new Volume(value1.Value * value2.Value, (VolumeUnits)multiplicationDefinition.result);

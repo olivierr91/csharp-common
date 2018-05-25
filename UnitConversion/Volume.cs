@@ -18,11 +18,15 @@ namespace CSharpCommon.Utils.Units
             return new Volume(UnitConverter.Convert(_value, _units, targetUnits), targetUnits);
         }
 
-        public static Volume operator *(Volume value1, decimal value2) {
-            return new Volume(value1.Value * value2, value1.Units);
+        public static Volume operator *(Volume value1, decimal? value2) {
+            if (value2 == null) {
+                return null;
+            } else {
+                return new Volume(value1.Value * value2.Value, value1.Units);
+            }
         }
 
-        public static Volume operator *(decimal value1, Volume value2) {
+        public static Volume operator *(decimal? value1, Volume value2) {
             return value2 * value1;
         }
 

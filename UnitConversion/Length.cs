@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace CSharpCommon.Utils.Units {
     public class Length : UnitAwareValue
     {
-        private static readonly Dictionary<(Enum value1Source, Enum value2Source), (Enum value1Target, Enum value2Target, Enum result)> NON_LOSSY_MULTIPLICATIONS = new Dictionary<(Enum, Enum), (Enum, Enum, Enum)>() {
+        private static readonly Dictionary<(Enum value1Source, Enum value2Source), (Enum value1Target, Enum value2Target, Enum result)> MULTIPLICATION_DEFINITIONS = new Dictionary<(Enum, Enum), (Enum, Enum, Enum)>() {
             { (LengthUnits.Feet, LengthUnits.Feet), (LengthUnits.Feet, LengthUnits.Feet, AreaUnits.SquareFeet) },
             { (LengthUnits.Feet, LengthUnits.Inches), (LengthUnits.Inches, LengthUnits.Inches, AreaUnits.SquareInches) },
             { (LengthUnits.Inches, LengthUnits.Feet), (LengthUnits.Inches, LengthUnits.Inches, AreaUnits.SquareFeet) },
@@ -34,7 +34,7 @@ namespace CSharpCommon.Utils.Units {
         }
 
         public static Area operator *(Length value1, Length value2) {
-            var multiplicationDefinition = NON_LOSSY_MULTIPLICATIONS[(value1.Units, value2.Units)];
+            var multiplicationDefinition = MULTIPLICATION_DEFINITIONS[(value1.Units, value2.Units)];
             value1 = value1.ConvertTo((LengthUnits)multiplicationDefinition.value1Target);
             value2 = value2.ConvertTo((LengthUnits)multiplicationDefinition.value2Target);
             return new Area(value1.Value * value2.Value, (AreaUnits)multiplicationDefinition.result);
