@@ -1,5 +1,5 @@
 ﻿namespace CSharpCommon.Utils.Units {
-    public enum LengthUnits {
+    public enum LengthUnit {
         [UnitPrecedence(6)]
         Meters = 0,
         [UnitPrecedence(5)]

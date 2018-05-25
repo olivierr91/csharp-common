@@ -6,16 +6,16 @@ namespace CSharpCommon.Utils.Units
 {
     public class Volume : UnitAwareValue
     {
-        private VolumeUnits _units;
+        private VolumeUnit _units;
 
-        public Volume(decimal value, VolumeUnits units): base(value, units) {
+        public Volume(decimal value, VolumeUnit units): base(value, units) {
             _value = value;
             _units = units;
         }
 
-        public VolumeUnits Units { get => _units; }
+        public VolumeUnit Units { get => _units; }
 
-        public Volume ConvertTo(VolumeUnits targetUnits) {
+        public Volume ConvertTo(VolumeUnit targetUnits) {
             return new Volume(UnitConverter.Convert(_value, _units, targetUnits), targetUnits);
         }
 

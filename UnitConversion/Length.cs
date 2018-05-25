@@ -4,16 +4,16 @@ using System;
 namespace CSharpCommon.Utils.Units {
     public class Length : UnitAwareValue
     {
-        private LengthUnits _units;
+        private LengthUnit _units;
 
-        public Length(decimal value, LengthUnits units): base(value, units) {
+        public Length(decimal value, LengthUnit units): base(value, units) {
             _value = value;
             _units = units;
         }
 
-        public LengthUnits Units { get => _units; }
+        public LengthUnit Units { get => _units; }
 
-        public Length ConvertTo(LengthUnits targetUnits) {
+        public Length ConvertTo(LengthUnit targetUnits) {
             return new Length(UnitConverter.Convert(_value, _units, targetUnits), targetUnits);
         }
     
@@ -28,7 +28,7 @@ namespace CSharpCommon.Utils.Units {
 
         public static Area operator *(Length value1, Length value2) {
             var equalizedValues = Equalize(value1, value2);
-            return new Area(equalizedValues.Value1.Value * equalizedValues.Value2.Value, FindKnownUnit<AreaUnits>(equalizedValues.Value1.Units, 2));
+            return new Area(equalizedValues.Value1.Value * equalizedValues.Value2.Value, FindKnownUnit<AreaUnit>(equalizedValues.Value1.Units, 2));
         }
 
         public override int GetHashCode() {
