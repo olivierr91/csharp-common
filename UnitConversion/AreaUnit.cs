@@ -5,10 +5,10 @@ namespace CSharpCommon.Utils.Units {
     {
         [UnitBase(baseUnitType: typeof(LengthUnit), baseUnitValue: (int)LengthUnit.Meters, baseUnitCount: 2)]
         [UnitPrecedence(6)]
-        SquareMeters = 1,
+        SquareMeters = 0,
         [UnitBase(baseUnitType: typeof(LengthUnit), baseUnitValue: (int)LengthUnit.Yards, baseUnitCount: 2)]
         [UnitPrecedence(5)]
-        SquareYards = 4,
+        SquareYards = 1,
         [UnitBase(baseUnitType: typeof(LengthUnit), baseUnitValue: (int)LengthUnit.Feet, baseUnitCount: 2)]
         [UnitPrecedence(4)]
         SquareFeet = 2,
@@ -17,10 +17,10 @@ namespace CSharpCommon.Utils.Units {
         SquareInches = 3,
         [UnitBase(baseUnitType: typeof(LengthUnit), baseUnitValue: (int)LengthUnit.Centimeters, baseUnitCount: 2)]
         [UnitPrecedence(2)]
-        SquareCentimeters = 5,
+        SquareCentimeters = 4,
         [UnitBase(baseUnitType: typeof(LengthUnit), baseUnitValue: (int)LengthUnit.Millimeters, baseUnitCount: 2)]
         [UnitPrecedence(1)]
-        SquareMillimeters = 6,
+        SquareMillimeters = 5,
     }
 
 }

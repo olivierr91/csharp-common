@@ -6,15 +6,15 @@
         CubicMeters = 0,
         [UnitBase(baseUnitType: typeof(LengthUnit), baseUnitValue: (int)LengthUnit.Yards, baseUnitCount: 3)]
         [UnitPrecedence(4)]
-        CubicYards = 4,
+        CubicYards = 1,
         [UnitBase(baseUnitType: typeof(LengthUnit), baseUnitValue: (int)LengthUnit.Feet, baseUnitCount: 3)]
         [UnitPrecedence(3)]
-        CubicFeet = 1,
+        CubicFeet = 2,
         [UnitPrecedence(2)]
         BoardFeet = 3,
         [UnitBase(baseUnitType: typeof(LengthUnit), baseUnitValue: (int)LengthUnit.Inches, baseUnitCount: 3)]
         [UnitPrecedence(1)]
-        CubicInches = 2,
+        CubicInches = 4,
         [UnitBase(baseUnitType: typeof(LengthUnit), baseUnitValue: (int)LengthUnit.Centimeters, baseUnitCount: 3)]
         [UnitPrecedence(1)]
         CubicCentimeters = 5,

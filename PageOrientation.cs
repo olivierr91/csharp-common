@@ -1,4 +1,4 @@
-﻿namespace SitkaWebApp.Server.Core.Domain.Reports {
+﻿namespace CSharpCommon.Utils {
     public enum ReportOrientation {
         Landscape = 0,
         Portrait = 1
