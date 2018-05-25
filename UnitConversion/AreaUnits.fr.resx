@@ -117,13 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SquareCentimeters" xml:space="preserve">
+    <value>Centimètres carrés</value>
+  </data>
+  <data name="SquareCentimeters_Abbr" xml:space="preserve">
+    <value>cm²</value>
+  </data>
   <data name="SquareFeet" xml:space="preserve">
     <value>Pieds carrés</value>
+  </data>
+  <data name="SquareFeet_Abbr" xml:space="preserve">
+    <value>pi²</value>
   </data>
   <data name="SquareInches" xml:space="preserve">
     <value>Pouces carrés</value>
   </data>
+  <data name="SquareInches_Abbr" xml:space="preserve">
+    <value>po²</value>
+  </data>
   <data name="SquareMeters" xml:space="preserve">
     <value>Mètres carrés</value>
+  </data>
+  <data name="SquareMeters_Abbr" xml:space="preserve">
+    <value>m²</value>
+  </data>
+  <data name="SquareMillimeters" xml:space="preserve">
+    <value>Millimètres carrés</value>
+  </data>
+  <data name="SquareMillimeters_Abbr" xml:space="preserve">
+    <value>mm²</value>
+  </data>
+  <data name="SquareYards" xml:space="preserve">
+    <value>Verges carrées</value>
+  </data>
+  <data name="SquareYards_Abbr" xml:space="preserve">
+    <value>vg²</value>
   </data>
 </root>

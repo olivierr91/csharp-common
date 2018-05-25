@@ -117,13 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SquareCentimeters" xml:space="preserve">
+    <value>Square Centimeters</value>
+  </data>
+  <data name="SquareCentimeters_Abbr" xml:space="preserve">
+    <value>cm²</value>
+  </data>
   <data name="SquareFeet" xml:space="preserve">
     <value>Square Feet</value>
+  </data>
+  <data name="SquareFeet_Abbr" xml:space="preserve">
+    <value>ft²</value>
   </data>
   <data name="SquareInches" xml:space="preserve">
     <value>Square Inches</value>
   </data>
+  <data name="SquareInches_Abbr" xml:space="preserve">
+    <value>in²</value>
+  </data>
   <data name="SquareMeters" xml:space="preserve">
     <value>Square Meters</value>
+  </data>
+  <data name="SquareMeters_Abbr" xml:space="preserve">
+    <value>m²</value>
+  </data>
+  <data name="SquareMillimeters" xml:space="preserve">
+    <value>Square Millimeters</value>
+  </data>
+  <data name="SquareMillimeters_Abbr" xml:space="preserve">
+    <value>mm²</value>
+  </data>
+  <data name="SquareYards" xml:space="preserve">
+    <value>Square Yards</value>
+  </data>
+  <data name="SquareYards_Abbr" xml:space="preserve">
+    <value>yd²</value>
   </data>
 </root>

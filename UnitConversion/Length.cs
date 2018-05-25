@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpCommon.Utils.Extensions;
+using System;
 
 namespace CSharpCommon.Utils.Units {
     public class Length : UnitAwareValue
     {
-        private static readonly Dictionary<(Enum value1Source, Enum value2Source), (Enum value1Target, Enum value2Target, Enum result)> MULTIPLICATION_DEFINITIONS = new Dictionary<(Enum, Enum), (Enum, Enum, Enum)>() {
-            { (LengthUnits.Feet, LengthUnits.Feet), (LengthUnits.Feet, LengthUnits.Feet, AreaUnits.SquareFeet) },
-            { (LengthUnits.Feet, LengthUnits.Inches), (LengthUnits.Inches, LengthUnits.Inches, AreaUnits.SquareInches) },
-            { (LengthUnits.Inches, LengthUnits.Feet), (LengthUnits.Inches, LengthUnits.Inches, AreaUnits.SquareFeet) },
-            { (LengthUnits.Inches, LengthUnits.Inches), (LengthUnits.Inches, LengthUnits.Inches, AreaUnits.SquareInches) },
-        };
-
         private LengthUnits _units;
 
         public Length(decimal value, LengthUnits units): base(value, units) {
@@ -25,8 +18,8 @@ namespace CSharpCommon.Utils.Units {
         }
     
         public static bool operator ==(Length value1, Length value2) {
-            var commonValue = MakeCommonValue(value1, value2);
-            return commonValue.value1 == commonValue.value2;
+            var equalizedValues = Equalize(value1, value2);
+            return equalizedValues.Value1 == equalizedValues.Value2;
         }
 
         public static bool operator !=(Length value1, Length value2) {
@@ -34,10 +27,8 @@ namespace CSharpCommon.Utils.Units {
         }
 
         public static Area operator *(Length value1, Length value2) {
-            var multiplicationDefinition = MULTIPLICATION_DEFINITIONS[(value1.Units, value2.Units)];
-            value1 = value1.ConvertTo((LengthUnits)multiplicationDefinition.value1Target);
-            value2 = value2.ConvertTo((LengthUnits)multiplicationDefinition.value2Target);
-            return new Area(value1.Value * value2.Value, (AreaUnits)multiplicationDefinition.result);
+            var equalizedValues = Equalize(value1, value2);
+            return new Area(equalizedValues.Value1.Value * equalizedValues.Value2.Value, FindKnownUnit<AreaUnits>(equalizedValues.Value1.Units, 2));
         }
 
         public override int GetHashCode() {
@@ -49,8 +40,16 @@ namespace CSharpCommon.Utils.Units {
                 return false;
 
             Length length = (Length)obj;
-            var commonValue = MakeCommonValue(this, length);
-            return commonValue.value1 == commonValue.value2;
+            var equalizedValues = Equalize(this, length);
+            return equalizedValues.Value1 == equalizedValues.Value2;
+        }
+
+        public static (Length Value1, Length Value2) Equalize(Length value1, Length value2) {
+            if (value1.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence < value2.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence) {
+                return (value1, value2.ConvertTo(value1.Units));
+            } else {
+                return (value1.ConvertTo(value2.Units), value2);
+            }
         }
     }
 }

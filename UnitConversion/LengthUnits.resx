@@ -120,19 +120,37 @@
   <data name="Centimeters" xml:space="preserve">
     <value>Centimeters</value>
   </data>
+  <data name="Centimeters_Abbr" xml:space="preserve">
+    <value>cm</value>
+  </data>
   <data name="Feet" xml:space="preserve">
     <value>Feet</value>
+  </data>
+  <data name="Feet_Abbr" xml:space="preserve">
+    <value>ft</value>
   </data>
   <data name="Inches" xml:space="preserve">
     <value>Inches</value>
   </data>
+  <data name="Inches_Abbr" xml:space="preserve">
+    <value>in</value>
+  </data>
   <data name="Meters" xml:space="preserve">
     <value>Meters</value>
+  </data>
+  <data name="Meters_Abbr" xml:space="preserve">
+    <value>m</value>
   </data>
   <data name="Millimeters" xml:space="preserve">
     <value>Millimeters</value>
   </data>
+  <data name="Millimeters_Abbr" xml:space="preserve">
+    <value>mm</value>
+  </data>
   <data name="Yards" xml:space="preserve">
     <value>Yards</value>
+  </data>
+  <data name="Yards_Abbr" xml:space="preserve">
+    <value>yd</value>
   </data>
 </root>

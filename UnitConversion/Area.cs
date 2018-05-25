@@ -1,20 +1,10 @@
 ﻿
-using System;
-using System.Collections.Generic;
+using CSharpCommon.Utils.Extensions;
 
 namespace CSharpCommon.Utils.Units
 {
     public class Area : UnitAwareValue
     {
-
-        private static readonly Dictionary<(Enum value1Source, Enum value2Source), (Enum value1Target, Enum value2Target, Enum result)> MULTIPLICATIONS_DEFINITIONS 
-            = new Dictionary<(Enum, Enum), (Enum, Enum, Enum)>() {
-            { (AreaUnits.SquareFeet, LengthUnits.Feet), (AreaUnits.SquareFeet, LengthUnits.Feet, VolumeUnits.CubicFeet) },
-            { (AreaUnits.SquareFeet, LengthUnits.Inches), (AreaUnits.SquareInches, LengthUnits.Inches, VolumeUnits.CubicInches) },
-            { (AreaUnits.SquareInches, LengthUnits.Feet), (AreaUnits.SquareInches, LengthUnits.Inches, VolumeUnits.CubicInches) },
-            { (AreaUnits.SquareInches, LengthUnits.Inches), (AreaUnits.SquareInches, LengthUnits.Inches, VolumeUnits.CubicInches) },
-        };
-
         private AreaUnits _units;
 
         public Area(decimal value, AreaUnits units): base(value, units) {
@@ -29,10 +19,17 @@ namespace CSharpCommon.Utils.Units
         }
     
         public static Volume operator *(Area value1, Length value2) {
-            var multiplicationDefinition = MULTIPLICATIONS_DEFINITIONS[(value1.Units, value2.Units)];
-            value1 = value1.ConvertTo((AreaUnits)multiplicationDefinition.value1Target);
-            value2 = value2.ConvertTo((LengthUnits)multiplicationDefinition.value2Target);
-            return new Volume(value1.Value * value2.Value, (VolumeUnits)multiplicationDefinition.result);
+            var equalizedValues = Equalize(value1, value2);
+            return new Volume(equalizedValues.Value1.Value * equalizedValues.Value2.Value, FindKnownUnit<VolumeUnits>(equalizedValues.Value2.Units, 3));
+        }
+
+        public static (Area Value1, Length Value2) Equalize(Area value1, Length value2) {
+            var baseUnit = GetBaseUnit<LengthUnits>(value1.Units);
+            if (baseUnit.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence < value2.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence) {
+                return (value1, value2.ConvertTo(baseUnit.Units));
+            } else {
+                return (value1.ConvertTo(FindKnownUnit<AreaUnits>(value2.Units, 2)), value2);
+            }
         }
     }
 }

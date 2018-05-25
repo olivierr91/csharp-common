@@ -120,19 +120,37 @@
   <data name="Centimeters" xml:space="preserve">
     <value>Centimètres</value>
   </data>
+  <data name="Centimeters_Abbr" xml:space="preserve">
+    <value>cm</value>
+  </data>
   <data name="Feet" xml:space="preserve">
     <value>Pieds</value>
+  </data>
+  <data name="Feet_Abbr" xml:space="preserve">
+    <value>pi</value>
   </data>
   <data name="Inches" xml:space="preserve">
     <value>Pouces</value>
   </data>
+  <data name="Inches_Abbr" xml:space="preserve">
+    <value>po</value>
+  </data>
   <data name="Meters" xml:space="preserve">
     <value>Mètres</value>
+  </data>
+  <data name="Meters_Abbr" xml:space="preserve">
+    <value>m</value>
   </data>
   <data name="Millimeters" xml:space="preserve">
     <value>Millimètres</value>
   </data>
+  <data name="Millimeters_Abbr" xml:space="preserve">
+    <value>mm</value>
+  </data>
   <data name="Yards" xml:space="preserve">
     <value>Verges</value>
+  </data>
+  <data name="Yards_Abbr" xml:space="preserve">
+    <value>vg</value>
   </data>
 </root>

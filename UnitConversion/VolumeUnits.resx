@@ -120,10 +120,40 @@
   <data name="BoardFeet" xml:space="preserve">
     <value>Board Feet</value>
   </data>
+  <data name="BoardFeet_Abbr" xml:space="preserve">
+    <value>BF</value>
+  </data>
+  <data name="CubicCentimeters" xml:space="preserve">
+    <value>Cubic Centimeters</value>
+  </data>
+  <data name="CubicCentimeters_Abbr" xml:space="preserve">
+    <value>cm³</value>
+  </data>
   <data name="CubicFeet" xml:space="preserve">
     <value>Cubic Feet</value>
   </data>
+  <data name="CubicFeet_Abbr" xml:space="preserve">
+    <value>ft³</value>
+  </data>
+  <data name="CubicInches_Abbr" xml:space="preserve">
+    <value>in³</value>
+  </data>
   <data name="CubicMeters" xml:space="preserve">
     <value>Cubic Meters</value>
+  </data>
+  <data name="CubicMeters_Abbr" xml:space="preserve">
+    <value>m³</value>
+  </data>
+  <data name="CubicMillimeters" xml:space="preserve">
+    <value>Cubic Millimeters</value>
+  </data>
+  <data name="CubicMillimeters_Abbr" xml:space="preserve">
+    <value>mm³</value>
+  </data>
+  <data name="CubicYards" xml:space="preserve">
+    <value>Cubic Yards</value>
+  </data>
+  <data name="CubicYards_Abbr" xml:space="preserve">
+    <value>yd³</value>
   </data>
 </root>
