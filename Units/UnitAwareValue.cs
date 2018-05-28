@@ -1,4 +1,5 @@
 ﻿using CSharpCommon.Utils.Extensions;
+using CSharpCommon.Utils.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,19 +7,27 @@ using System.Linq;
 namespace CSharpCommon.Utils.Units {
     public abstract class UnitAwareValue
     {
-        protected decimal _value;
+        protected decimal? _value;
         private Enum _knownUnit;
 
-        public UnitAwareValue(decimal value, Enum knownUnit) {
+        public UnitAwareValue(decimal? value, Enum knownUnit) {
             _value = value;
             _knownUnit = knownUnit;
         }
 
         public Enum KnownUnit { get => _knownUnit; }
-        public decimal Value { get => _value; }
+        public decimal? Value { get => _value; }
 
         public override string ToString() {
-            return $"{_value} {KnownUnit.ToString()}";
+            return $"{_value} {GetUnitAbberviation()}";
+        }
+
+        public string ToString(string numberFormat) {
+            return String.Format("{0:" + numberFormat + "} {1}", _value, GetUnitAbberviation());
+        }
+
+        public string GetUnitAbberviation() {
+            return ResourceUtils.GetString(KnownUnit, KnownUnit.ToString() + "_Abbr");
         }
 
         protected static T FindKnownUnit<T>(Enum baseUnit, int baseUnitCount) {

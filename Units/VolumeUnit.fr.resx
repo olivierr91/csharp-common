@@ -118,42 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BoardFeet" xml:space="preserve">
-    <value>Board Feet</value>
+    <value>Pieds de planche</value>
   </data>
   <data name="BoardFeet_Abbr" xml:space="preserve">
-    <value>BF</value>
+    <value>PMP</value>
   </data>
   <data name="CubicCentimeters" xml:space="preserve">
-    <value>Cubic Centimeters</value>
+    <value>Centimètres cubiques</value>
   </data>
   <data name="CubicCentimeters_Abbr" xml:space="preserve">
     <value>cm³</value>
   </data>
   <data name="CubicFeet" xml:space="preserve">
-    <value>Cubic Feet</value>
+    <value>Pieds carrés</value>
   </data>
   <data name="CubicFeet_Abbr" xml:space="preserve">
-    <value>ft³</value>
+    <value>pi³</value>
+  </data>
+  <data name="CubicInches" xml:space="preserve">
+    <value>Pouces cubiques</value>
   </data>
   <data name="CubicInches_Abbr" xml:space="preserve">
-    <value>in³</value>
+    <value>po³</value>
   </data>
   <data name="CubicMeters" xml:space="preserve">
-    <value>Cubic Meters</value>
+    <value>Mètres cubiques</value>
   </data>
   <data name="CubicMeters_Abbr" xml:space="preserve">
     <value>m³</value>
   </data>
   <data name="CubicMillimeters" xml:space="preserve">
-    <value>Cubic Millimeters</value>
+    <value>Millimètres cubiques</value>
   </data>
   <data name="CubicMillimeters_Abbr" xml:space="preserve">
     <value>mm³</value>
   </data>
   <data name="CubicYards" xml:space="preserve">
-    <value>Cubic Yards</value>
+    <value>Verges cubiques</value>
   </data>
   <data name="CubicYards_Abbr" xml:space="preserve">
-    <value>yd³</value>
+    <value>vg³</value>
   </data>
 </root>

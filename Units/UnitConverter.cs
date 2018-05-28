@@ -58,8 +58,10 @@ namespace CSharpCommon.Utils.Units {
             { (VolumeUnit.CubicCentimeters, VolumeUnit.CubicMillimeters), 1000 },
         };
 
-        public static decimal Convert(decimal value, Enum sourceUnits, Enum targetUnits) {
-            if (Equals(sourceUnits, targetUnits)) {
+        public static decimal? Convert(decimal? value, Enum sourceUnits, Enum targetUnits) {
+            if (value == null) {
+                return null;
+            } else if (Equals(sourceUnits, targetUnits)) {
                 return value;
             }
             if (CONVERSIONS.ContainsKey((sourceUnits, targetUnits))) {

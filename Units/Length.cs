@@ -6,7 +6,7 @@ namespace CSharpCommon.Utils.Units {
     {
         private LengthUnit _units;
 
-        public Length(decimal value, LengthUnit units): base(value, units) {
+        public Length(decimal? value, LengthUnit units): base(value, units) {
             _value = value;
             _units = units;
         }

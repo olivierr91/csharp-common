@@ -1,14 +1,12 @@
 ﻿
 using CSharpCommon.Utils.Extensions;
-using System;
 
-namespace CSharpCommon.Utils.Units
-{
+namespace CSharpCommon.Utils.Units {
     public class Volume : UnitAwareValue
     {
         private VolumeUnit _units;
 
-        public Volume(decimal value, VolumeUnit units): base(value, units) {
+        public Volume(decimal? value, VolumeUnit units): base(value, units) {
             _value = value;
             _units = units;
         }
@@ -19,15 +17,18 @@ namespace CSharpCommon.Utils.Units
             return new Volume(UnitConverter.Convert(_value, _units, targetUnits), targetUnits);
         }
 
-        public static Volume operator *(Volume value1, decimal value2) {
+        public static Volume operator *(Volume value1, decimal? value2) {
+            if (value2 == null) {
+                return null;
+            }
             return new Volume(value1.Value * value2, value1.Units);
         }
 
-        public static Volume operator *(decimal value1, Volume value2) {
+        public static Volume operator *(decimal? value1, Volume value2) {
             return value2 * value1;
         }
 
-        public static decimal operator /(Volume value1, Volume value2) {
+        public static decimal? operator /(Volume value1, Volume value2) {
             var equalizedValues = Equalize(value1, value2);
             return equalizedValues.Value1.Value / equalizedValues.Value2.Value;
         }

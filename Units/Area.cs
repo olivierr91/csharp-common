@@ -7,7 +7,7 @@ namespace CSharpCommon.Utils.Units
     {
         private AreaUnit _units;
 
-        public Area(decimal value, AreaUnit units): base(value, units) {
+        public Area(decimal? value, AreaUnit units): base(value, units) {
             _value = value;
             _units = units;
         }

@@ -18,7 +18,10 @@ namespace CSharpCommon.Utils {
             }
         }
 
-        public static bool IsWhole(decimal value) {
+        public static bool IsWhole(decimal? value) {
+            if (value == null) {
+                return false;
+            }
             return value % 1 == 0;
         }
 

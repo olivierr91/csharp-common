@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CSharpCommon.Utils.Extensions
@@ -18,6 +19,10 @@ namespace CSharpCommon.Utils.Extensions
             if (partitionedSet.Count > 0) {
                 partition(partitionedSet);
             }
+        }
+
+        public static bool ContainsAny<T>(this HashSet<T> source, params T[] values) {
+            return values.Any(v => source.Contains(v));
         }
     }
 }
