@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CSharpCommon.Utils.Extensions {
     public static class IListExtensions
@@ -14,6 +15,22 @@ namespace CSharpCommon.Utils.Extensions {
                 return null;
             } else {
                 return collection[index];
+            }
+        }
+
+        public static T ExtendSet<T>(this IList<T> collection, int index, T value) where T : class {
+            if (index < 0) {
+                throw new IndexOutOfRangeException();
+            } else if (index > collection.Count - 1) {
+                collection.ExtendWithDefault(collection.Count - index + 1);
+            }
+            collection[index] = value;
+            return value;
+        }
+
+        public static void ExtendWithDefault<T>(this IList<T> collection, int totalSize) {
+            while (totalSize > collection.Count) {
+                collection.Add(default(T));
             }
         }
     }

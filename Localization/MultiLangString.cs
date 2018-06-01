@@ -33,6 +33,10 @@ namespace CSharpCommon.Utils.Localization {
             _values[locale] = value;
         }
 
+        public string Get() {
+            return Get(CultureInfo.CurrentCulture);
+        }
+
         public string Get(CultureInfo locale) {
             return _values[locale];
         }

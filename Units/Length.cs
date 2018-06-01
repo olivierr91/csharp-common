@@ -7,6 +7,9 @@ namespace CSharpCommon.Utils.Units {
         private LengthUnit _units;
 
         public Length(decimal? value, LengthUnit units): base(value, units) {
+            if (units == LengthUnit.None && value.HasValue && value != 0) {
+                throw new ArgumentException($"Unit {units} is not valid for non-empty values.");
+            }
             _value = value;
             _units = units;
         }
@@ -18,6 +21,11 @@ namespace CSharpCommon.Utils.Units {
         }
     
         public static bool operator ==(Length value1, Length value2) {
+            if (ReferenceEquals(value1,  null) && ReferenceEquals(value2, null)) {
+                return true;
+            } else if (ReferenceEquals(value1, null) || ReferenceEquals(value2, null)) {
+                return false;
+            }
             var equalizedValues = Equalize(value1, value2);
             return equalizedValues.Value1 == equalizedValues.Value2;
         }
@@ -27,6 +35,9 @@ namespace CSharpCommon.Utils.Units {
         }
 
         public static Area operator *(Length value1, Length value2) {
+            if (value1 == null || value2 == null) {
+                return null;
+            }
             var equalizedValues = Equalize(value1, value2);
             return new Area(equalizedValues.Value1.Value * equalizedValues.Value2.Value, FindKnownUnit<AreaUnit>(equalizedValues.Value1.Units, 2));
         }
@@ -45,7 +56,9 @@ namespace CSharpCommon.Utils.Units {
         }
 
         public static (Length Value1, Length Value2) Equalize(Length value1, Length value2) {
-            if (value1.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence < value2.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence) {
+            if (value1 == null || value2 == null) {
+                return (value1, value2);
+            } else if (value1.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence < value2.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence) {
                 return (value1, value2.ConvertTo(value1.Units));
             } else {
                 return (value1.ConvertTo(value2.Units), value2);

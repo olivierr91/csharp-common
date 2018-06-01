@@ -147,6 +147,12 @@
   <data name="Millimeters_Abbr" xml:space="preserve">
     <value>mm</value>
   </data>
+  <data name="None" xml:space="preserve">
+    <value />
+  </data>
+  <data name="None_Abbr" xml:space="preserve">
+    <value />
+  </data>
   <data name="Yards" xml:space="preserve">
     <value>Verges</value>
   </data>
