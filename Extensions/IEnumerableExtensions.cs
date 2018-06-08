@@ -11,5 +11,9 @@ namespace CSharpCommon.Utils.Extensions {
             }
         }
 
+        public static T FindMax<T, C>(this IEnumerable<T> source, Func<T, C> selector) {
+            var maxValue = source.Max(x => selector);
+            return source.First(x => selector == maxValue);
+        }
     }
 }

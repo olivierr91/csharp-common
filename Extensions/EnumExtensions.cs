@@ -21,7 +21,11 @@ namespace CSharpCommon.Utils.Extensions {
         }
 
         public static TAttribute GetAttribute<TAttribute>(this Enum value) where TAttribute : Attribute {
-            return GetAttributes<TAttribute>(value).First();
+            return GetAttributes<TAttribute>(value).Single();
+        }
+
+        public static TAttribute GetAttributeOrDefault<TAttribute>(this Enum value) where TAttribute : Attribute {
+            return GetAttributes<TAttribute>(value).SingleOrDefault();
         }
 
         public static string GetDisplayName(this Enum value) {

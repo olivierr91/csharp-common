@@ -28,8 +28,8 @@ namespace CSharpCommon.Utils.Extensions {
             return value;
         }
 
-        public static void ExtendWithDefault<T>(this IList<T> collection, int totalSize) {
-            while (totalSize > collection.Count) {
+        public static void ExtendWithDefault<T>(this IList<T> collection, int index) {
+            while (index + 1 > collection.Count) {
                 collection.Add(default(T));
             }
         }
