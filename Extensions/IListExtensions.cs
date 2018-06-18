@@ -10,22 +10,22 @@ namespace CSharpCommon.Utils.Extensions {
             }
         }
 
-        public static T TryGet<T>(this IList<T> collection, int index) where T : class {
-            if (index < 0 || index > collection.Count - 1) {
-                return null;
-            } else {
-                return collection[index];
+        public static void ExtendAndSetAtIfNoExist<T>(this IList<T> collection, int index, T value) where T : class {
+            if (index < 0) {
+                throw new IndexOutOfRangeException();
+            } else if (index > collection.Count - 1) {
+                collection.ExtendWithDefault(collection.Count - index + 1);
+                collection[index] = value;
             }
         }
 
-        public static T ExtendSet<T>(this IList<T> collection, int index, T value) where T : class {
+        public static void ExtendAndSetAt<T>(this IList<T> collection, int index, T value) where T : class {
             if (index < 0) {
                 throw new IndexOutOfRangeException();
             } else if (index > collection.Count - 1) {
                 collection.ExtendWithDefault(collection.Count - index + 1);
             }
             collection[index] = value;
-            return value;
         }
 
         public static void ExtendWithDefault<T>(this IList<T> collection, int index) {

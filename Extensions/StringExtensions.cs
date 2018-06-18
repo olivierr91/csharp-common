@@ -56,6 +56,10 @@ namespace CSharpCommon.Utils.Extensions {
             return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
 
+        public static string RegExReplace(this string value, string pattern, string replacement) {
+            return Regex.Replace(value, pattern, replacement, RegexOptions.Compiled);
+        }
+
         public static string RemoveNonNumerics(this string value) {
             return Regex.Replace(value, @"[^0-9]", "", RegexOptions.Compiled);
         }

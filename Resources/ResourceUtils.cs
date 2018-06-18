@@ -10,7 +10,7 @@ namespace CSharpCommon.Utils.Resources {
     public static class ResourceUtils
     {
         public static string GetFileAsString(object caller, string identifier) {
-            ResourceSet resourceSet = GetResourceSetOrInvariant(caller);
+            ResourceSet resourceSet = GetResourceSetOrInvariant(caller.GetType());
             object resource = resourceSet.GetObject(identifier);
             using (var memoryStream = new MemoryStream((byte[])resource))
             using (var streamReader = new StreamReader(memoryStream)) {
@@ -26,20 +26,32 @@ namespace CSharpCommon.Utils.Resources {
         }
 
         public static string FormatString(object caller, string identifier, params object[] formatArguments) {
-            return String.Format(GetString(caller, identifier), formatArguments);
+            return FormatString(caller.GetType(), identifier, formatArguments);
+        }
+
+        public static string FormatString(Type callerType, string identifier, params object[] formatArguments) {
+            return String.Format(GetString(callerType, identifier), formatArguments);
         }
 
         public static string GetString(object caller, string identifier) {
-            return GetString(caller, identifier, CultureInfo.CurrentCulture);
+            return GetString(caller.GetType(), identifier);
+        }
+
+        public static string GetString(Type callerType, string identifier) {
+            return GetString(callerType, identifier, CultureInfo.CurrentCulture);
         }
 
         public static string GetString(object caller, string identifier, CultureInfo locale) {
-            ResourceSet resourceSet = GetResourceSetOrInvariant(caller, locale);
+            return GetString(caller.GetType(), identifier, locale);
+        }
+
+        public static string GetString(Type callerType, string identifier, CultureInfo locale) {
+            ResourceSet resourceSet = GetResourceSetOrInvariant(callerType, locale);
             try {
-                return resourceSet?.GetString(identifier) ?? throw new ResourceNotFoundException($"Resource '{identifier}' in '{caller}' could not be found for locale '{locale}'.");
+                return resourceSet?.GetString(identifier) ?? throw new ResourceNotFoundException($"Resource '{identifier}' in '{callerType}' could not be found for locale '{locale}'.");
             } catch (ResourceNotFoundException) {
                 if (locale != CultureInfo.InvariantCulture) {
-                    return GetString(caller, identifier, CultureInfo.InvariantCulture);
+                    return GetString(callerType, identifier, CultureInfo.InvariantCulture);
                 } else {
                     return "???";
                 }
@@ -54,24 +66,24 @@ namespace CSharpCommon.Utils.Resources {
 
         public static MultiLangString GetMultiLangString(object caller, string identifier, string[] localeNames = null) {
             var multiLangString = new MultiLangString();
-            Dictionary<CultureInfo, ResourceSet> resourceSets = GetResourceSets(caller);
+            Dictionary<CultureInfo, ResourceSet> resourceSets = GetResourceSets(caller.GetType());
             foreach (var resourceSet in resourceSets) {
                 multiLangString.AddLocalization(resourceSet.Value.GetString(identifier), resourceSet.Key);
             }
             return multiLangString;
         }
 
-        private static ResourceSet GetResourceSetOrInvariant(object caller) {
-            return GetResourceSetOrInvariant(caller, CultureInfo.CurrentCulture);
+        private static ResourceSet GetResourceSetOrInvariant(Type callerType) {
+            return GetResourceSetOrInvariant(callerType, CultureInfo.CurrentCulture);
         }
 
-        private static ResourceSet GetResourceSetOrInvariant(object caller, CultureInfo locale) {
-            var resourceManager = GetResourceManager(caller);
+        private static ResourceSet GetResourceSetOrInvariant(Type callerType, CultureInfo locale) {
+            var resourceManager = GetResourceManager(callerType);
             return resourceManager.GetResourceSet(locale, true, false) ?? resourceManager.GetResourceSet(CultureInfo.InvariantCulture, true, false);
         }
 
-        private static Dictionary<CultureInfo, ResourceSet> GetResourceSets(object caller) {
-            var resourceManager = GetResourceManager(caller);
+        private static Dictionary<CultureInfo, ResourceSet> GetResourceSets(Type callerType) {
+            var resourceManager = GetResourceManager(callerType);
             var resourceSets = new Dictionary<CultureInfo, ResourceSet>();
             foreach (CultureInfo culture in CultureInfo.GetCultures(CultureTypes.AllCultures)) {
                 try {
@@ -81,8 +93,8 @@ namespace CSharpCommon.Utils.Resources {
             return resourceSets;
         }
 
-        private static ResourceManager GetResourceManager(object caller) {
-            return new ResourceManager(caller.GetType().FullName, Assembly.GetAssembly(caller.GetType()));
+        private static ResourceManager GetResourceManager(Type callerType) {
+            return new ResourceManager(callerType.FullName, Assembly.GetAssembly(callerType));
         }
     }
 }

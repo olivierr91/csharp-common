@@ -27,7 +27,7 @@ namespace CSharpCommon.Utils.Units {
                 return false;
             }
             var equalizedValues = Equalize(value1, value2);
-            return equalizedValues.Value1 == equalizedValues.Value2;
+            return equalizedValues.Value1?.Value == equalizedValues.Value2?.Value;
         }
 
         public static bool operator !=(Length value1, Length value2) {
@@ -52,7 +52,7 @@ namespace CSharpCommon.Utils.Units {
 
             Length length = (Length)obj;
             var equalizedValues = Equalize(this, length);
-            return equalizedValues.Value1 == equalizedValues.Value2;
+            return equalizedValues.Value1?.Value == equalizedValues.Value2?.Value;
         }
 
         public static (Length Value1, Length Value2) Equalize(Length value1, Length value2) {

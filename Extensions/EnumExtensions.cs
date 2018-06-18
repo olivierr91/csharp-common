@@ -29,11 +29,7 @@ namespace CSharpCommon.Utils.Extensions {
         }
 
         public static string GetDisplayName(this Enum value) {
-            return value.GetDisplayName(CultureInfo.CurrentCulture);
-        }
-
-        public static string GetDisplayName(this Enum value, CultureInfo locale) {
-            return ResourceUtils.GetString(value, value.ToString(), locale);
+            return ResourceUtils.GetString(value, value.ToString());
         }
 
         public static MultiLangString GetMultiLangDisplayName(this Enum value, string[] localeNames = null) {
