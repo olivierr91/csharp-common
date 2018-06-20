@@ -8,6 +8,10 @@ namespace CSharpCommon.Utils.Extensions {
             return type == typeof(T[]);
         }
 
+        public static bool IsClassOrSubclassOf<T>(this Type type) {
+            return type == typeof(T) || type.IsSubclassOf(typeof(T));
+        }
+
         public static bool IsNonNullableSimpleType(this Type type) {
             return
                 type.IsValueType ||
@@ -53,12 +57,16 @@ namespace CSharpCommon.Utils.Extensions {
             return Array.Exists(type.GetInterfaces(), IsGenericCollectionType);
         }
 
-        public static bool IsGenericCollectionType(this Type type) {
-            return type.IsGenericType && (typeof(ICollection<>) == type.GetGenericTypeDefinition());
+        public static bool IsGenericOfType(this Type type, Type genericType) {
+            return type.IsGenericType && (type.GetGenericTypeDefinition() == genericType);
         }
 
-        public static bool HasInterface(this Type type, Type interfaceType) {
-            return type.GetInterfaces().Contains(interfaceType);
+        public static bool IsGenericCollectionType(this Type type) {
+            return type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(ICollection<>));
+        }
+
+        public static bool HasInterface<T>(this Type type) {
+            return type.GetInterfaces().Contains(typeof(T));
         }
     }
 }

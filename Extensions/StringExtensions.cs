@@ -1,5 +1,4 @@
-﻿using CSharpCommon.Utils.CaseConversion;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -121,10 +120,6 @@ namespace CSharpCommon.Utils.Extensions {
 
         public static string ToSingleLine(this string value) {
             return Regex.Replace(value, @"[\r|\n]+", "");
-        }
-
-        public static string ToTitleCase(this string value) {
-            return TitleCaseConverter.ToTitleCase(value);
         }
 
         public static string Truncate(this string value, int maxLength) {

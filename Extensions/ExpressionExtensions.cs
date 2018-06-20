@@ -14,5 +14,23 @@ namespace CSharpCommon.Utils.Extensions {
             }
             return expr;
         }
+
+        public static string GetName<T, TResult>(this Expression<Func<T, TResult>> expr) {
+            return expr.GetMemberInfo().Member.Name;
+        }
+
+        public static MemberExpression GetMemberInfo(this Expression method) {
+            LambdaExpression lambda = method as LambdaExpression;
+
+            MemberExpression memberExpr = null;
+            if (lambda.Body.NodeType == ExpressionType.Convert) {
+                memberExpr =
+                    ((UnaryExpression)lambda.Body).Operand as MemberExpression;
+            } else if (lambda.Body.NodeType == ExpressionType.MemberAccess) {
+                memberExpr = lambda.Body as MemberExpression;
+            }
+
+            return memberExpr;
+        }
     }
 }

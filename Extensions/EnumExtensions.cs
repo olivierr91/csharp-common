@@ -31,9 +31,5 @@ namespace CSharpCommon.Utils.Extensions {
         public static string GetDisplayName(this Enum value) {
             return ResourceUtils.GetString(value, value.ToString());
         }
-
-        public static MultiLangString GetMultiLangDisplayName(this Enum value, string[] localeNames = null) {
-            return ResourceUtils.GetMultiLangString(value, value.ToString(), localeNames);
-        }
     }
 }
