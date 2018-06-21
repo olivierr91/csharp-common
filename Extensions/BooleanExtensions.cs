@@ -8,7 +8,7 @@ namespace CSharpCommon.Utils.Extensions
     public static class BooleanExtensions
     {
         public static string ToLocalizedString(this bool value, BooleanFormattingType formattingType) {
-            return ResourceUtils.FormatString(typeof(BooleanExtensions), value ? "Yes" : "No");
+            return ResourceUtils.GetString(typeof(BooleanExtensions), value ? "Yes" : "No");
         }
     }
 }
