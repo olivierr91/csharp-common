@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpCommon.Utils.Extensions {
+namespace CSharpCommon.Extensions {
     public static class DateTimeOffsetExtensions
     {
         public static DateTimeOffset RoundToSeconds(this DateTimeOffset value) {

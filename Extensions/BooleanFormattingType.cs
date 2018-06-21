@@ -1,4 +1,4 @@
-﻿namespace CSharpCommon.Utils.Extensions {
+﻿namespace CSharpCommon.Extensions {
     public enum BooleanFormattingType
     {
         YesNo = 0

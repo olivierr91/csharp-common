@@ -1,6 +1,7 @@
-﻿using System;
+﻿using CSharpCommon.Utils;
+using System;
 
-namespace CSharpCommon.Utils.TimeScheduling {
+namespace CSharpCommon.TimeScheduling {
     public class AnyTimeComponent : ITimeScheduleComponent {
 
         private int _minValue;

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSharpCommon.Utils.Extensions
+namespace CSharpCommon.Extensions
 {
     public static class BooleanExtensions
     {

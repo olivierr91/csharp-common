@@ -1,8 +1,8 @@
 ﻿
-using CSharpCommon.Utils.Extensions;
+using CSharpCommon.Extensions;
 using System;
 
-namespace CSharpCommon.Utils.Units {
+namespace CSharpCommon.Units {
     public class Volume : UnitAwareValue
     {
         private VolumeUnit _units;

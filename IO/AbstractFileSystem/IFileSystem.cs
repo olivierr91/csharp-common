@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace CSharpCommon.Utils.IO.AbstractFileSystem {
+namespace CSharpCommon.IO.AbstractFileSystem {
     public interface IFileSystem
     {
         Stream CreateFile(string path, FileMode mode, FileAccess access, FileShare share);

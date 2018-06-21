@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpCommon.Utils.Extensions {
+namespace CSharpCommon.Extensions {
     public static class TimeSpanExtensions
     {
         public static TimeSpan Absolute(this TimeSpan value) {

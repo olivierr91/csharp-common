@@ -1,10 +1,10 @@
-﻿using CSharpCommon.Utils.Extensions.Reflection;
+﻿using CSharpCommon.Extensions.Reflection;
 using CSharpCommon.Utils.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpCommon.Utils.Extensions {
+namespace CSharpCommon.Extensions {
     public static class EnumExtensions
     {
         public static bool HasAttribute<TAttribute>(this Enum value) where TAttribute : Attribute {

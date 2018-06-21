@@ -1,7 +1,7 @@
 ﻿using CSharpCommon.Utils.Text;
 using System;
 
-namespace CSharpCommon.Utils.TimeScheduling {
+namespace CSharpCommon.TimeScheduling {
     public class IntervalTimeComponent : ITimeScheduleComponent {
 
         private int _interval;

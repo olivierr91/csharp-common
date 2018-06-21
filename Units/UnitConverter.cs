@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSharpCommon.Utils.Units {
+namespace CSharpCommon.Units {
     public class UnitConverter
     {
         private static readonly Dictionary<(Enum source, Enum target), decimal> CONVERSIONS = new Dictionary<(Enum, Enum), decimal>() {

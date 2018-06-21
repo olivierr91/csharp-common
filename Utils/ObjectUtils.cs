@@ -1,7 +1,6 @@
 ﻿using System;
 
-namespace CSharpCommon.Utils
-{
+namespace CSharpCommon.Utils {
     public static class ObjectUtils
     {
         public static bool IsTypeOfOrSubTypeOf(Type objectType, Type type) {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpCommon.Utils.Units {
+namespace CSharpCommon.Units {
     public class UnitBaseAttribute : Attribute {
         public UnitBaseAttribute(Type baseUnitType, int baseUnitValue, int baseUnitCount) {
             BaseUnitType = baseUnitType;

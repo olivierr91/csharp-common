@@ -1,4 +1,4 @@
-﻿using CSharpCommon.Utils.Extensions.Text;
+﻿using CSharpCommon.Extensions.Text;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;

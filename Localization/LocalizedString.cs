@@ -1,4 +1,4 @@
-﻿namespace CSharpCommon.Utils.Localization {
+﻿namespace CSharpCommon.Localization {
     public class LocalizedString
     {
         public LocalizedString(string neutralValue, string localizedValue) {

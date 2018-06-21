@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSharpCommon.Utils.Extensions {
+namespace CSharpCommon.Extensions {
     public static class ArrayExtensions
     {
         public static void ForEach<T>(this T[] array, Action<T, int> action) {

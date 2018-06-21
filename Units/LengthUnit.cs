@@ -1,4 +1,4 @@
-﻿namespace CSharpCommon.Utils.Units {
+﻿namespace CSharpCommon.Units {
     public enum LengthUnit {
         [UnitPrecedence(7)]
         None = 0,

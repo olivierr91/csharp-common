@@ -1,4 +1,4 @@
-﻿namespace CSharpCommon.Utils {
+﻿namespace CSharpCommon {
     public sealed class HashCodeBuilder {
 
         private int _hash = 17;

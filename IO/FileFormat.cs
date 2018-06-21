@@ -1,8 +1,8 @@
-using CSharpCommon.Utils.Extensions;
+using CSharpCommon.Extensions;
 using System;
 using System.Linq;
 
-namespace CSharpCommon.Utils.IO {
+namespace CSharpCommon.IO {
     public enum FileFormat {
         [MimeType("application/octet-stream")]
         Unknown = 0,

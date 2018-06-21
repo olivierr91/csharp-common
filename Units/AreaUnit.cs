@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpCommon.Utils.Units {
+namespace CSharpCommon.Units {
     public enum AreaUnit
     {
         [UnitBase(baseUnitType: typeof(LengthUnit), baseUnitValue: (int)LengthUnit.None, baseUnitCount: 2)]
