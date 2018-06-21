@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpCommon.Utils.Text;
+using System;
 
 namespace CSharpCommon.Utils.TimeScheduling {
     public class IntervalTimeComponent : ITimeScheduleComponent {

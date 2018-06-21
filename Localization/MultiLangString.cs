@@ -1,4 +1,4 @@
-﻿using CSharpCommon.Utils.Extensions;
+﻿using CSharpCommon.Utils.Extensions.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 

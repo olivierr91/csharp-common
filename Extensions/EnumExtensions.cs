@@ -1,8 +1,7 @@
-﻿using CSharpCommon.Utils.Localization;
+﻿using CSharpCommon.Utils.Extensions.Reflection;
 using CSharpCommon.Utils.Resources;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace CSharpCommon.Utils.Extensions {
