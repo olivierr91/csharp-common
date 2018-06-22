@@ -1,4 +1,4 @@
-﻿using NoNameDev.CSharpCommon.Extensions;
+﻿using NoNameDev.CSharpCommon.Extensions.Text;
 using System;
 using System.Linq;
 
@@ -11,6 +11,15 @@ namespace NoNameDev.CSharpCommon.Utils {
 
         public static (int IntegerPart, int DecimalPart) SplitDecimalPoint(float value) {
             string[] strValues = value.ToString().Split('.', StringSplitOptions.RemoveEmptyEntries);
+            if (strValues.Length == 2) {
+                return (Int32.Parse(strValues[0]), Int32.Parse(strValues[1]));
+            } else {
+                return (Int32.Parse(strValues[0]), 0);
+            }
+        }
+
+        public static (int IntegerPart, int DecimalPart) SplitDecimalPoint(decimal value) {
+            string[] strValues = value.ToString().Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
             if (strValues.Length == 2) {
                 return (Int32.Parse(strValues[0]), Int32.Parse(strValues[1]));
             } else {

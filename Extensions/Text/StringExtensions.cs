@@ -25,14 +25,17 @@ namespace NoNameDev.CSharpCommon.Extensions.Text {
             return Regex.IsMatch(value, @"\s+", RegexOptions.Compiled);
         }
 
-        public static bool IsValidEmailFormat(this string value) {
-            return Regex.IsMatch(value, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        }
-
         public static bool IsNumeric(this string value) {
             return Regex.IsMatch(value, @"^\d+$",  RegexOptions.Compiled);
         }
 
+        public static string Left(this string value, int length) {
+            if (value.Length <= length) {
+                return value;
+            } else {
+                return value.Substring(0, length);
+            }
+        }
         public static string NullableTrim(this string value) {
             if (value == null) {
                 return null;
@@ -54,7 +57,7 @@ namespace NoNameDev.CSharpCommon.Extensions.Text {
 
             return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
-
+        
         public static string RegExReplace(this string value, string pattern, string replacement) {
             return Regex.Replace(value, pattern, replacement, RegexOptions.Compiled);
         }
@@ -85,6 +88,14 @@ namespace NoNameDev.CSharpCommon.Extensions.Text {
 
         public static string ReplaceNonAlphaNumericsWithSpace(this string value) {
             return Regex.Replace(value, "[^A-Za-z0-9 ]", " ");
+        }
+
+        public static string Right(this string value, int length) {
+            if (value.Length <= length) {
+                return value;
+            } else {
+                return value.Substring(value.Length - length);
+            }
         }
 
         public static bool SoftEquals(this string str1, string str2, bool ignoreCase = false) {
