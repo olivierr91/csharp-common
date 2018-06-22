@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSharpCommon.Extensions.Collections {
+namespace NoNameDev.CSharpCommon.Extensions.Collections {
     public static class IListExtensions
     {
         public static void ExtendAndSetAtIfNoExist<T>(this IList<T> collection, int index, T value) where T : class {

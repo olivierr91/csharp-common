@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSharpCommon.Extensions.Collections
+namespace NoNameDev.CSharpCommon.Extensions.Collections
 {
     public static class ICollectionExtensions
     {

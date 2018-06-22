@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace CSharpCommon.Extensions {
+namespace NoNameDev.CSharpCommon.Extensions {
     public static class ObjectExtensions
     {
         public static bool IsIn<T>(this T obj, params T[] args) {

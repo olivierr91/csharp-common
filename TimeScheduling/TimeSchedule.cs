@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpCommon.TimeScheduling {
+namespace NoNameDev.CSharpCommon.TimeScheduling {
     public class TimeSchedule {
 
         private ITimeScheduleComponent _days = null;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace CSharpCommon.EventHandling {
+namespace NoNameDev.CSharpCommon.EventHandling {
     public class ExtendedEventHandlerSubscriber<T> where T : EventArgs {
 
         public ExtendedEventHandlerSubscriber(Action<object, T> action) {

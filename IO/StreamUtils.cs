@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace CSharpCommon.IO {
+namespace NoNameDev.CSharpCommon.IO {
     public static class StreamUtils
     {
         public static MemoryStream FromString(string value) {

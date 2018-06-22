@@ -1,9 +1,9 @@
-﻿using CSharpCommon.Extensions.Text;
+﻿using NoNameDev.CSharpCommon.Extensions.Text;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace CSharpCommon.Utils.Text {
+namespace NoNameDev.CSharpCommon.Utils.Text {
     public static class RegExUtils
     {
         private const int MAX_TEXT_LENGTH_IN_EXCEPTION = 256;

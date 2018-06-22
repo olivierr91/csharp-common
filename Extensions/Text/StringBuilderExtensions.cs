@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace CSharpCommon.Extensions.Text {
+namespace NoNameDev.CSharpCommon.Extensions.Text {
     public static class StringBuilderExtensions
     {
         public static StringBuilder Append(this StringBuilder stringBuilder, string value, string delimiter) {

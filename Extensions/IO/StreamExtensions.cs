@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace CSharpCommon.Extensions.IO {
+namespace NoNameDev.CSharpCommon.Extensions.IO {
     public static class StreamExtensions
     {
         public static string ReadToEnd(this Stream stream) {

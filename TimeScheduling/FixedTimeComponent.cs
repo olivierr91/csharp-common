@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpCommon.TimeScheduling {
+namespace NoNameDev.CSharpCommon.TimeScheduling {
     public class FixedTimeComponent : ITimeScheduleComponent {
 
         private HashSet<int> _values = new HashSet<int>();

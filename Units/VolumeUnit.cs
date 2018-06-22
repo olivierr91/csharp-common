@@ -1,4 +1,4 @@
-﻿namespace CSharpCommon.Units {
+﻿namespace NoNameDev.CSharpCommon.Units {
     public enum VolumeUnit
     {
         [UnitBase(baseUnitType: typeof(LengthUnit), baseUnitValue: (int)LengthUnit.None, baseUnitCount: 3)]

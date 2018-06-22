@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSharpCommon.Extensions.Collections {
+namespace NoNameDev.CSharpCommon.Extensions.Collections {
     public static class ListExtensions
     {
         public static void Sort<TSource, TKey>(this List<TSource> list, Func<TSource, TKey> keySelector) where TKey : IComparable {

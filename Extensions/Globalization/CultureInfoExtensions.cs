@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace CSharpCommon.Extensions.Globalization {
+namespace NoNameDev.CSharpCommon.Extensions.Globalization {
     public static class CultureInfoExtensions
     {
         public static bool IsOrIsSubcultureOf(this CultureInfo parentCulture, CultureInfo childCulture) {

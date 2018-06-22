@@ -1,4 +1,4 @@
-﻿namespace CSharpCommon.TimeScheduling {
+﻿namespace NoNameDev.CSharpCommon.TimeScheduling {
     public interface ITimeScheduleComponent
     {
         int MinValue { get; }

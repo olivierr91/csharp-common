@@ -1,11 +1,11 @@
-﻿using CSharpCommon.Extensions;
-using CSharpCommon.Extensions.Collections;
-using CSharpCommon.Utils.Resources;
+﻿using NoNameDev.CSharpCommon.Extensions;
+using NoNameDev.CSharpCommon.Extensions.Collections;
+using NoNameDev.CSharpCommon.Utils.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpCommon.Units {
+namespace NoNameDev.CSharpCommon.Units {
     public abstract class UnitAwareValue
     {
         protected decimal? _value;

@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace CSharpCommon.Utils.Cryptography {
+namespace NoNameDev.CSharpCommon.Utils.Cryptography {
     public class CryptoUtils
     {
         public static byte[] GetSalt() {

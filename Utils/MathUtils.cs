@@ -1,8 +1,8 @@
-﻿using CSharpCommon.Extensions;
+﻿using NoNameDev.CSharpCommon.Extensions;
 using System;
 using System.Linq;
 
-namespace CSharpCommon.Utils {
+namespace NoNameDev.CSharpCommon.Utils {
     public static class MathUtils {
 
         public static bool ApproxEquals(float val1, float val2, float epsilon) {

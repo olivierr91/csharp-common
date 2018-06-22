@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace CSharpCommon.Extensions.Reflection {
+namespace NoNameDev.CSharpCommon.Extensions.Reflection {
     public static class MemberInfoExtensions {
         public static bool HasAttribute<TAttribute>(this MemberInfo memberInfo) where TAttribute : Attribute {
             return memberInfo.GetCustomAttributes(false).OfType<TAttribute>().Any();

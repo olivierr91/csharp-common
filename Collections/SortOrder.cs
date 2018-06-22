@@ -1,4 +1,4 @@
-﻿namespace CSharpCommon.Extensions.Collections {
+﻿namespace NoNameDev.CSharpCommon.Extensions.Collections {
     public enum SortOrder
     {
         None = 0,

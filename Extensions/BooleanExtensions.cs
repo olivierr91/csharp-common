@@ -1,9 +1,9 @@
-﻿using CSharpCommon.Utils.Resources;
+﻿using NoNameDev.CSharpCommon.Utils.Resources;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CSharpCommon.Extensions
+namespace NoNameDev.CSharpCommon.Extensions
 {
     public static class BooleanExtensions
     {

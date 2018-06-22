@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpCommon.Utils {
+namespace NoNameDev.CSharpCommon.Utils {
     public static class BooleanUtils
     {
         public static bool? ParseNullable(string value) {

@@ -1,8 +1,8 @@
-using CSharpCommon.Extensions;
+using NoNameDev.CSharpCommon.Extensions;
 using System;
 using System.Linq;
 
-namespace CSharpCommon.IO {
+namespace NoNameDev.CSharpCommon.IO {
     public static class FileFormatUtils {
         public static FileFormat FromMimeType(string mimeType) {
             foreach(FileFormat fileFormat in Enum.GetValues(typeof(FileFormat))) {

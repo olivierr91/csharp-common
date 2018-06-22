@@ -1,11 +1,11 @@
-﻿using CSharpCommon.Localization;
+﻿using NoNameDev.CSharpCommon.Localization;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
 
-namespace CSharpCommon.Utils.Resources {
+namespace NoNameDev.CSharpCommon.Utils.Resources {
     public static class ResourceUtils
     {
         public static string GetString(object caller, string identifier, params object[] formatArguments) {

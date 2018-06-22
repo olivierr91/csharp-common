@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpCommon.Extensions.Collections {
+namespace NoNameDev.CSharpCommon.Extensions.Collections {
     public static class IEnumerableExtensions
     {
         public static bool ContainsAny<T>(this IEnumerable<T> source, params T[] values) {

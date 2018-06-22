@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpCommon.Units {
+namespace NoNameDev.CSharpCommon.Units {
     public class UnitPrecedenceAttribute : Attribute {
         public UnitPrecedenceAttribute(int precedence) {
             Precedence = precedence;

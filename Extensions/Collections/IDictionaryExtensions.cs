@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpCommon.Extensions.Collections {
+namespace NoNameDev.CSharpCommon.Extensions.Collections {
     public static class IDictionaryExtensions
     {
         public static Dictionary<T1, T2> CopyIntersectWith<T1, T2>(this IDictionary<T1, T2> dictionary, IEnumerable<T1> keys) {
