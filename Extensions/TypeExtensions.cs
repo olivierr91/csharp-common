@@ -49,6 +49,11 @@ namespace NoNameDev.CSharpCommon.Extensions {
                 }.Contains(type);
         }
 
+        public static bool IsNullableEnum(this Type type) {
+            type = Nullable.GetUnderlyingType(type);
+            return (type != null) && type.IsEnum;
+        }
+
         public static bool IsNumericType(this Type type) {
             return IsNonNullableNumericType(type) || IsNullableNumericType(type);
         }

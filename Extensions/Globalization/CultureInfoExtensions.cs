@@ -21,9 +21,9 @@ namespace NoNameDev.CSharpCommon.Extensions.Globalization {
             return false;
         }
 
-        public static CultureInfo GetClosestCulture(this CultureInfo cultureInfo, List<CultureInfo> cultureLIst) {
+        public static CultureInfo GetClosestCulture(this CultureInfo cultureInfo, List<CultureInfo> cultureList) {
             while (!cultureInfo.Equals(CultureInfo.InvariantCulture)) {
-                if (cultureLIst.Exists(sc => sc.Equals(cultureInfo))) {
+                if (cultureList.Exists(sc => sc.Equals(cultureInfo))) {
                     return cultureInfo;
                 }
                 cultureInfo = cultureInfo.Parent;
