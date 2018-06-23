@@ -29,7 +29,11 @@ namespace NoNameDev.CSharpCommon.Utils.Resources {
             try {
                 var str = resourceSet?.GetString(identifier)
                     ?? throw new ResourceNotFoundException($"Resource '{assembly.FullName}/{resourceName}/{identifier}' could not be found for locale '{locale}'.");
-                return String.Format(str, formatArguments);
+                if (formatArguments.Length > 0) {
+                    return String.Format(str, formatArguments);
+                } else {
+                    return str;
+                }
             } catch (ResourceNotFoundException) {
                 if (locale != CultureInfo.InvariantCulture) {
                     return GetString(resourceName, identifier, CultureInfo.InvariantCulture, formatArguments);
