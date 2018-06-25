@@ -9,14 +9,14 @@ namespace NoNameDev.CSharpCommon.Units {
     public abstract class UnitAwareValue
     {
         protected decimal? _value;
-        private Enum _knownUnit;
+        private Enum _knownUnits;
 
         public UnitAwareValue(decimal? value, Enum knownUnit) {
             _value = value;
-            _knownUnit = knownUnit;
+            _knownUnits = knownUnit;
         }
 
-        public Enum KnownUnit { get => _knownUnit; }
+        public Enum KnownUnits { get => _knownUnits; }
         public decimal? Value { get => _value; }
 
         public override string ToString() {
@@ -32,7 +32,7 @@ namespace NoNameDev.CSharpCommon.Units {
         }
 
         public string GetUnitAbberviation() {
-            return ResourceUtils.GetString(KnownUnit, KnownUnit.ToString() + "_Abbr");
+            return ResourceUtils.GetString(KnownUnits, KnownUnits.ToString() + "_Abbr");
         }
 
         protected static T FindKnownUnit<T>(Enum baseUnit, int baseUnitCount) {
