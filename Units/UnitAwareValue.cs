@@ -23,12 +23,12 @@ namespace NoNameDev.CSharpCommon.Units {
             return $"{_value} {GetUnitAbberviation()}";
         }
 
-        public string ToString(string numberFormat) {
-            return $"{_value?.ToString(numberFormat)} {GetUnitAbberviation()}";
-        }
-
-        public string ToStringNoTrailingZeroes(string numberFormat) {
-            return $"{_value?.ToString(numberFormat)} {GetUnitAbberviation()}";
+        public string ToString(string numberFormat, bool keepNumeralsOnly = false) {
+            if (keepNumeralsOnly) {
+                return $"{_value?.ToString(numberFormat)} {GetUnitAbberviation()}";
+            } else {
+                return _value?.ToString(numberFormat);
+            }
         }
 
         public string GetUnitAbberviation() {
