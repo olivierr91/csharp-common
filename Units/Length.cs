@@ -4,19 +4,19 @@ using System;
 namespace NoNameDev.CSharpCommon.Units {
     public class Length : UnitAwareValue
     {
-        private LengthUnit _units;
+        private LengthUnits _units;
 
-        public Length(decimal? value, LengthUnit units): base(value, units) {
-            if (units == LengthUnit.None && value.HasValue && value != 0) {
+        public Length(decimal? value, LengthUnits units): base(value, units) {
+            if (units == LengthUnits.None && value.HasValue && value != 0) {
                 throw new ArgumentException($"Unit {units} is not valid for non-empty values.");
             }
             _value = value;
             _units = units;
         }
 
-        public LengthUnit Units { get => _units; }
+        public LengthUnits Units { get => _units; }
 
-        public Length ConvertTo(LengthUnit targetUnits) {
+        public Length ConvertTo(LengthUnits targetUnits) {
             return new Length(UnitConverter.Convert(_value, _units, targetUnits), targetUnits);
         }
     
@@ -39,7 +39,7 @@ namespace NoNameDev.CSharpCommon.Units {
                 return null;
             }
             var equalizedValues = Equalize(value1, value2);
-            return new Area(equalizedValues.Value1.Value * equalizedValues.Value2.Value, FindKnownUnit<AreaUnit>(equalizedValues.Value1.Units, 2));
+            return new Area(equalizedValues.Value1.Value * equalizedValues.Value2.Value, FindKnownUnit<AreaUnits>(equalizedValues.Value1.Units, 2));
         }
 
         public override int GetHashCode() {

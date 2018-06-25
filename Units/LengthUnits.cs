@@ -1,5 +1,7 @@
-﻿namespace NoNameDev.CSharpCommon.Units {
-    public enum LengthUnit {
+﻿using NoNameDev.CSharpCommon.Utils.Resources;
+
+namespace NoNameDev.CSharpCommon.Units {
+    public enum LengthUnits {
         [UnitPrecedence(7)]
         None = 0,
         [UnitPrecedence(6)]
@@ -14,5 +16,11 @@
         Centimeters = 5,
         [UnitPrecedence(1)]
         Millimeters = 6,
+    }
+
+    public static class LengthUnitExtensions {
+        public static string GetAbbreviation(this LengthUnits units) {
+            return ResourceUtils.GetString(units, units.ToString() + "_Abbr");
+        }
     }
 }

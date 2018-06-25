@@ -5,19 +5,19 @@ using System;
 namespace NoNameDev.CSharpCommon.Units {
     public class Volume : UnitAwareValue
     {
-        private VolumeUnit _units;
+        private VolumeUnits _units;
 
-        public Volume(decimal? value, VolumeUnit units): base(value, units) {
-            if (units == VolumeUnit.None && value.HasValue && value != 0) {
+        public Volume(decimal? value, VolumeUnits units): base(value, units) {
+            if (units == VolumeUnits.None && value.HasValue && value != 0) {
                 throw new ArgumentException($"Unit {units} is not valid for non-empty values.");
             }
             _value = value;
             _units = units;
         }
 
-        public VolumeUnit Units { get => _units; }
+        public VolumeUnits Units { get => _units; }
 
-        public Volume ConvertTo(VolumeUnit targetUnits) {
+        public Volume ConvertTo(VolumeUnits targetUnits) {
             return new Volume(UnitConverter.Convert(_value, _units, targetUnits), targetUnits);
         }
 
@@ -58,6 +58,6 @@ namespace NoNameDev.CSharpCommon.Units {
             }
         }
 
-        public static Volume Zero { get => new Volume(0, VolumeUnit.None); }
+        public static Volume Zero { get => new Volume(0, VolumeUnits.None); }
     }
 }
