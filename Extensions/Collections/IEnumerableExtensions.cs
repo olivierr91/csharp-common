@@ -9,14 +9,21 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
             return values.Any(v => source.Contains(v));
         }
 
-        public static T FindMax<T, C>(this IEnumerable<T> source, Func<T, C> selector) {
-            var maxValue = source.Max(x => selector);
-            return source.First(x => selector == maxValue);
+        public static T FindMax<T, C>(this IEnumerable<T> source, Func<T, C> selector) where C : IComparable<C> {
+            return source.Aggregate((i1, i2) => selector(i1).CompareTo(selector(i2)) > 0 ? i1 : i2);
         }
 
         public static void ForEach<T>(this IEnumerable<T> source, Action<T> action) {
             foreach (var item in source) {
                 action(item);
+            }
+        }
+
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T, int> action) {
+            int index = 0;
+            foreach (var item in source) {
+                action(item, index);
+                index++;
             }
         }
 
@@ -32,6 +39,18 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
             if (partitionedSet.Count > 0) {
                 partition(partitionedSet);
             }
+        }
+
+        public static IEnumerable<TResult> SelectDistinct<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector) {
+            return source.GroupBy(selector).Select(g => g.Key);
+        }
+
+        public static string JoinString(this IEnumerable<string> source, string separator) {
+            return String.Join(separator, source);
+        }
+
+        public static OrderedSet<T> ToOrderedSet<T>(this IEnumerable<T> source) {
+            return new OrderedSet<T>(source);
         }
     }
 }

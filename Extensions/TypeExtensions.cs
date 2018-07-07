@@ -17,12 +17,28 @@ namespace NoNameDev.CSharpCommon.Extensions {
                 type.IsValueType ||
                 type.IsPrimitive ||
                 new Type[] {
-                    typeof(String),
                     typeof(Decimal),
                     typeof(DateTime),
                     typeof(DateTimeOffset),
                     typeof(TimeSpan),
                     typeof(Guid)
+                }.Contains(type) ||
+                Convert.GetTypeCode(type) != TypeCode.Object;
+        }
+
+        public static bool IsNullableSimpleType(this Type type) {
+            return
+                new Type[] {
+                    typeof(short?),
+                    typeof(int?),
+                    typeof(double?),
+                    typeof(float?),
+                    typeof(String),
+                    typeof(Decimal?),
+                    typeof(DateTime?),
+                    typeof(DateTimeOffset?),
+                    typeof(TimeSpan?),
+                    typeof(Guid?)
                 }.Contains(type) ||
                 Convert.GetTypeCode(type) != TypeCode.Object;
         }
@@ -68,6 +84,10 @@ namespace NoNameDev.CSharpCommon.Extensions {
 
         public static bool IsGenericCollectionType(this Type type) {
             return type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(ICollection<>));
+        }
+
+        public static bool IsSimpleType(this Type type) {
+            return IsNullableSimpleType(type) || IsNonNullableSimpleType(type);
         }
 
         public static bool HasInterface<T>(this Type type) {
