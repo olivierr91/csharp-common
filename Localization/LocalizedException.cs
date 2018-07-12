@@ -24,7 +24,7 @@ namespace NoNameDev.CSharpCommon.Localization {
             LocalizedMessage = localizedMessage.LocalizedValue;
         }
 
-        #region Test-related members
+        #region Test-Related Definitions
 
         protected LocalizedException() : base() { }
 
