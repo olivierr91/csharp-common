@@ -23,8 +23,8 @@ namespace NoNameDev.CSharpCommon.Units {
             return $"{_value} {GetUnitAbberviation()}";
         }
 
-        public string ToString(string numberFormat, bool keepNumeralsOnly = false) {
-            if (keepNumeralsOnly) {
+        public string ToString(string numberFormat, bool showUnit = true) {
+            if (showUnit) {
                 return $"{_value?.ToString(numberFormat)} {GetUnitAbberviation()}";
             } else {
                 return _value?.ToString(numberFormat);

@@ -22,7 +22,7 @@ namespace NoNameDev.CSharpCommon.Units {
         }
 
         public static Volume operator *(Volume value1, decimal? value2) {
-            if (value2 == null) {
+            if (value1 == null || value2 == null) {
                 return null;
             }
             return new Volume(value1.Value * value2, value1.Units);
