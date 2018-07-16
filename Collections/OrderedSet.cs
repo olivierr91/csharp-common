@@ -43,6 +43,17 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
             return true;
         }
 
+
+        public int AddRange(IEnumerable<T> items) {
+            int added = 0;
+            foreach(T item in items) {
+                if (Add(item)) {
+                    added++;
+                }
+            }
+            return added;
+        }
+
         public void Clear() {
             _linkedList.Clear();
             _dictionary.Clear();

@@ -49,6 +49,12 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
             return String.Join(separator, source);
         }
 
+        public static IEnumerable<IGrouping<TSourceKey, IGrouping<TKey, TSource>>> ThenBy<TSource, TKey, TSourceKey>(this IEnumerable<IGrouping<TSourceKey, TSource>> source, Func<TSource, TKey> keySelector) {
+            return source
+                .SelectMany(g => g.GroupBy(keySelector), (grp1, grp2) => (grp1, grp2))
+                .GroupBy(temp0 => temp0.grp1.Key, temp0 => temp0.grp2);
+        }
+
         public static OrderedSet<T> ToOrderedSet<T>(this IEnumerable<T> source) {
             return new OrderedSet<T>(source);
         }
