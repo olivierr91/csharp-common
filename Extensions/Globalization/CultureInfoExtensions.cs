@@ -11,13 +11,12 @@ namespace NoNameDev.CSharpCommon.Extensions.Globalization {
         }
 
         public static bool IsSubcultureOf(this CultureInfo parentCulture, CultureInfo childCulture) {
-            var currentParentCulture = childCulture.Parent;
-            while (currentParentCulture != null) {
-                if (currentParentCulture.Equals(parentCulture)) {
+            do {
+                if (childCulture.Parent.Equals(parentCulture)) {
                     return true;
                 }
-                currentParentCulture = currentParentCulture.Parent;
-            }
+                childCulture = childCulture.Parent;
+            } while (!childCulture.Equals(CultureInfo.InvariantCulture));
             return false;
         }
 
