@@ -1,11 +1,8 @@
 ﻿using System;
 
 namespace NoNameDev.CSharpCommon.Utils {
-    public static class ObjectUtils
-    {
-        public static bool IsTypeOfOrSubTypeOf(Type objectType, Type type) {
-            return objectType == type || objectType.IsSubclassOf(type);
-        }
+
+    public static class ObjectUtils {
 
         public static bool Equals<T>(T oldValue, T newValue, StringComparison stringComparisonType = StringComparison.InvariantCultureIgnoreCase) {
             if (typeof(T) == typeof(string)) {
@@ -13,6 +10,10 @@ namespace NoNameDev.CSharpCommon.Utils {
             } else {
                 return Object.Equals(newValue, oldValue);
             }
+        }
+
+        public static bool IsTypeOfOrSubTypeOf(Type objectType, Type type) {
+            return objectType == type || objectType.IsSubclassOf(type);
         }
     }
 }

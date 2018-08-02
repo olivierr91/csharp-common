@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 
 namespace NoNameDev.CSharpCommon.Localization {
-    public class MultiLangString
-    {
+
+    public class MultiLangString {
         private Dictionary<CultureInfo, string> _values = new Dictionary<CultureInfo, string>();
 
         public MultiLangString() {
-            
         }
 
         public MultiLangString(params (string, string)[] values) {
@@ -18,7 +17,7 @@ namespace NoNameDev.CSharpCommon.Localization {
         }
 
         public MultiLangString(Dictionary<string, string> values) {
-            foreach(KeyValuePair<string, string> value in values) {
+            foreach (KeyValuePair<string, string> value in values) {
                 _values.Add(CultureInfo.GetCultureInfo(value.Key), value.Value);
             }
         }
@@ -28,6 +27,16 @@ namespace NoNameDev.CSharpCommon.Localization {
         }
 
         public Dictionary<CultureInfo, string> Values { get => _values; }
+
+        public static MultiLangString Merge(MultiLangString multiLangString, string value, CultureInfo locale) {
+            if (value == null) {
+                return multiLangString;
+            } else if (multiLangString == null) {
+                multiLangString = new MultiLangString();
+            }
+            multiLangString.AddLocalization(value, locale);
+            return multiLangString;
+        }
 
         public void AddLocalization(string value, CultureInfo locale) {
             _values[locale] = value;
@@ -47,16 +56,6 @@ namespace NoNameDev.CSharpCommon.Localization {
 
         public override string ToString() {
             return GetOrDefault(CultureInfo.CurrentCulture);
-        }
-
-        public static MultiLangString Merge(MultiLangString multiLangString, string value, CultureInfo locale) {
-            if (value == null) {
-                return multiLangString;
-            } else if (multiLangString == null) {
-                multiLangString = new MultiLangString();
-            }
-            multiLangString.AddLocalization(value, locale);
-            return multiLangString;
         }
     }
 }

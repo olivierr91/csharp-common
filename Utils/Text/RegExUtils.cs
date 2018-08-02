@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace NoNameDev.CSharpCommon.Utils.Text {
-    public static class RegExUtils
-    {
+
+    public static class RegExUtils {
         private const int MAX_TEXT_LENGTH_IN_EXCEPTION = 256;
 
         public static List<string> MatchAllSingleGroups(string pattern, string text, RegexOptions regexOptions = RegexOptions.None) {
@@ -17,6 +17,18 @@ namespace NoNameDev.CSharpCommon.Utils.Text {
                     results.Add(match.Groups[1].Value);
                 }
                 match = match.NextMatch();
+            }
+            return results;
+        }
+
+        public static List<string> MatchFirstGroup(string pattern, string text, RegexOptions regexOptions = RegexOptions.None) {
+            var results = new List<string>();
+            var regex = new Regex(pattern, regexOptions);
+            Match match = regex.Match(text);
+            if (match.Success && match.Groups.Count == 2) {
+                foreach (Group group in match.Groups) {
+                    results.Add(group.Value);
+                }
             }
             return results;
         }
@@ -39,18 +51,6 @@ namespace NoNameDev.CSharpCommon.Utils.Text {
             } else {
                 return null;
             }
-        }
-
-        public static List<string> MatchFirstGroup(string pattern, string text, RegexOptions regexOptions = RegexOptions.None) {
-            var results = new List<string>();
-            var regex = new Regex(pattern, regexOptions);
-            Match match = regex.Match(text);
-            if (match.Success && match.Groups.Count == 2) {
-                foreach(Group group in match.Groups) {
-                    results.Add(group.Value);
-                }
-            }
-            return results;
         }
     }
 }

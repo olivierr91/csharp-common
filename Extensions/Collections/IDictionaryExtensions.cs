@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace NoNameDev.CSharpCommon.Extensions.Collections {
-    public static class IDictionaryExtensions
-    {
-        public static Dictionary<T1, T2> CopyIntersectWith<T1, T2>(this IDictionary<T1, T2> dictionary, IEnumerable<T1> keys) {
-            return dictionary.Keys.Intersect(keys).ToDictionary(v => v, v => dictionary[v]);
-        }
 
-        public static void AddOrReplace<T1, T2>(this IDictionary<T1, T2> dictionary, T1 key, T2 value){
+    public static class IDictionaryExtensions {
+
+        public static void AddOrReplace<T1, T2>(this IDictionary<T1, T2> dictionary, T1 key, T2 value) {
             if (dictionary.ContainsKey(key)) {
                 dictionary[key] = value;
             } else {
@@ -28,6 +25,20 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
             list.Add(value);
         }
 
+        public static Dictionary<T1, T2> CopyIntersectWith<T1, T2>(this IDictionary<T1, T2> dictionary, IEnumerable<T1> keys) {
+            return dictionary.Keys.Intersect(keys).ToDictionary(v => v, v => dictionary[v]);
+        }
+
+        public static bool DictionaryEquals<T1, T2>(this IReadOnlyDictionary<T1, T2> dictionary, IReadOnlyDictionary<T1, T2> otherDictionary) {
+            return (dictionary == otherDictionary) || (dictionary.Count == otherDictionary.Count && !dictionary.Except(otherDictionary).Any());
+        }
+
+        public static void ForEach<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> dictionary, Action<KeyValuePair<TKey, TValue>> action) {
+            foreach (KeyValuePair<TKey, TValue> keyValuePair in dictionary) {
+                action(keyValuePair);
+            }
+        }
+
         public static T2 GetOrDefault<T1, T2>(this IDictionary<T1, T2> dictionary, T1 key) {
             if (dictionary.ContainsKey(key)) {
                 return dictionary[key];
@@ -35,11 +46,6 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
                 return default(T2);
             }
         }
-
-        public static bool DictionaryEquals<T1, T2>(this IReadOnlyDictionary<T1, T2> dictionary, IReadOnlyDictionary<T1, T2> otherDictionary) {
-            return (dictionary == otherDictionary) || (dictionary.Count == otherDictionary.Count && !dictionary.Except(otherDictionary).Any());
-        }
-
 
         public static void Merge<T1, T2>(this IDictionary<T1, T2> dictionary, IReadOnlyDictionary<T1, T2> otherDictionary) {
             foreach (KeyValuePair<T1, T2> entry in otherDictionary) {
@@ -53,12 +59,5 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
                 dictionary.Remove(key);
             }
         }
-
-        public static void ForEach<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> dictionary, Action<KeyValuePair<TKey, TValue>> action) {
-            foreach (KeyValuePair<TKey, TValue> keyValuePair in dictionary) {
-                action(keyValuePair);
-            }
-        }
-
     }
 }

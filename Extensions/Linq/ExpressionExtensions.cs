@@ -2,22 +2,8 @@
 using System.Linq.Expressions;
 
 namespace NoNameDev.CSharpCommon.Extensions.Linq {
-    public static class ExpressionExtensions
-    {
- 
-        public static Expression RemoveCast(this Expression expr) {
-            if ((expr.NodeType == ExpressionType.Convert) ||
-                (expr.NodeType == ExpressionType.ConvertChecked)) {
-                var unary = expr as UnaryExpression;
-                if (unary != null)
-                    return unary.Operand;
-            }
-            return expr;
-        }
 
-        public static string GetName<T, TResult>(this Expression<Func<T, TResult>> expr) {
-            return expr.GetMemberInfo().Member.Name;
-        }
+    public static class ExpressionExtensions {
 
         public static MemberExpression GetMemberInfo(this Expression method) {
             LambdaExpression lambda = method as LambdaExpression;
@@ -31,6 +17,20 @@ namespace NoNameDev.CSharpCommon.Extensions.Linq {
             }
 
             return memberExpr;
+        }
+
+        public static string GetName<T, TResult>(this Expression<Func<T, TResult>> expr) {
+            return expr.GetMemberInfo().Member.Name;
+        }
+
+        public static Expression RemoveCast(this Expression expr) {
+            if ((expr.NodeType == ExpressionType.Convert) ||
+                (expr.NodeType == ExpressionType.ConvertChecked)) {
+                var unary = expr as UnaryExpression;
+                if (unary != null)
+                    return unary.Operand;
+            }
+            return expr;
         }
     }
 }

@@ -1,10 +1,16 @@
 ﻿using System;
 
 namespace NoNameDev.CSharpCommon.Extensions {
-    public static class DateTimeOffsetExtensions
-    {
-        public static DateTimeOffset RoundToSeconds(this DateTimeOffset value) {
-            return value.Round(TimeSpan.TicksPerSecond);
+
+    public static class DateTimeOffsetExtensions {
+
+        public static DateTimeOffset Round(this DateTimeOffset value, long ticksAccuracy) {
+            long mod = value.Ticks % ticksAccuracy;
+            if (mod > ticksAccuracy / 2) {
+                return value.AddTicks(ticksAccuracy - mod);
+            } else {
+                return value.AddTicks(-mod);
+            }
         }
 
         public static DateTimeOffset RoundToCentiseconds(this DateTimeOffset value) {
@@ -15,13 +21,8 @@ namespace NoNameDev.CSharpCommon.Extensions {
             return value.Round(TimeSpan.TicksPerMillisecond);
         }
 
-        public static DateTimeOffset Round(this DateTimeOffset value, long ticksAccuracy) {
-            long mod = value.Ticks % ticksAccuracy;
-            if (mod > ticksAccuracy / 2) {
-                return value.AddTicks(ticksAccuracy - mod);
-            } else {
-                return value.AddTicks(-mod);
-            }
+        public static DateTimeOffset RoundToSeconds(this DateTimeOffset value) {
+            return value.Round(TimeSpan.TicksPerSecond);
         }
     }
 }

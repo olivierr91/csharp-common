@@ -3,9 +3,11 @@ using System;
 using System.Linq;
 
 namespace NoNameDev.CSharpCommon.IO {
+
     public static class FileFormatUtils {
+
         public static FileFormat FromMimeType(string mimeType) {
-            foreach(FileFormat fileFormat in Enum.GetValues(typeof(FileFormat))) {
+            foreach (FileFormat fileFormat in Enum.GetValues(typeof(FileFormat))) {
                 if (fileFormat.GetAttributes<MimeTypeAttribute>().First().MimeType == mimeType) {
                     return fileFormat;
                 }

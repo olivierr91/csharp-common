@@ -6,8 +6,24 @@ using System.Reflection;
 using System.Resources;
 
 namespace NoNameDev.CSharpCommon.Utils.Resources {
-    public static class ResourceUtils
-    {
+
+    public static class ResourceUtils {
+
+        public static LocalizedString GetLocalizedString(object caller, string identifier, params object[] formatArguments) {
+            string neutralValue = GetString(caller, identifier, CultureInfo.InvariantCulture, formatArguments);
+            string localizedValue = GetString(caller, identifier, formatArguments);
+            return new LocalizedString(neutralValue, localizedValue);
+        }
+
+        public static MultiLangString GetMultiLangString(string resourceName, Assembly assembly, string identifier, string[] localeNames = null) {
+            var multiLangString = new MultiLangString();
+            Dictionary<CultureInfo, ResourceSet> resourceSets = GetResourceSets(resourceName, assembly);
+            foreach (var resourceSet in resourceSets) {
+                multiLangString.AddLocalization(resourceSet.Value.GetString(identifier), resourceSet.Key);
+            }
+            return multiLangString;
+        }
+
         public static string GetString(object caller, string identifier, params object[] formatArguments) {
             return GetString(caller.GetType().FullName, caller.GetType().Assembly, identifier, CultureInfo.CurrentCulture, formatArguments);
         }
@@ -41,21 +57,6 @@ namespace NoNameDev.CSharpCommon.Utils.Resources {
                     return "???";
                 }
             }
-        }
-
-        public static LocalizedString GetLocalizedString(object caller, string identifier, params object[] formatArguments) {
-            string neutralValue = GetString(caller, identifier, CultureInfo.InvariantCulture, formatArguments);
-            string localizedValue = GetString(caller, identifier, formatArguments);
-            return new LocalizedString(neutralValue, localizedValue);
-        }
-
-        public static MultiLangString GetMultiLangString(string resourceName, Assembly assembly, string identifier, string[] localeNames = null) {
-            var multiLangString = new MultiLangString();
-            Dictionary<CultureInfo, ResourceSet> resourceSets = GetResourceSets(resourceName, assembly);
-            foreach (var resourceSet in resourceSets) {
-                multiLangString.AddLocalization(resourceSet.Value.GetString(identifier), resourceSet.Key);
-            }
-            return multiLangString;
         }
 
         private static ResourceSet GetResourceSetOrInvariant(string resourceName, Assembly assembly) {

@@ -1,6 +1,6 @@
 ﻿namespace NoNameDev.CSharpCommon {
-    public sealed class HashCodeBuilder {
 
+    public sealed class HashCodeBuilder {
         private int _hash = 17;
 
         public HashCodeBuilder Add(int value) {

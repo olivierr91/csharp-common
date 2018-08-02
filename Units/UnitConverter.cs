@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 
 namespace NoNameDev.CSharpCommon.Units {
-    public class UnitConverter
-    {
+
+    public class UnitConverter {
+
         private static readonly Dictionary<(Enum source, Enum target), decimal> CONVERSIONS = new Dictionary<(Enum, Enum), decimal>() {
             { (LengthUnits.Meters, LengthUnits.None), 1 },
             { (LengthUnits.Meters, LengthUnits.Yards), 1.09361m },

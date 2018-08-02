@@ -4,8 +4,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 namespace NoNameDev.CSharpCommon.Extensions.Text {
-    public static class StringExtensions
-    {
+
+    public static class StringExtensions {
+
         public static string Append(this string value, string appendValue = null, string delimiter = "") {
             if (String.IsNullOrEmpty(appendValue)) {
                 return value;
@@ -26,7 +27,7 @@ namespace NoNameDev.CSharpCommon.Extensions.Text {
         }
 
         public static bool IsNumeric(this string value) {
-            return Regex.IsMatch(value, @"^\d+$",  RegexOptions.Compiled);
+            return Regex.IsMatch(value, @"^\d+$", RegexOptions.Compiled);
         }
 
         public static string Left(this string value, int length) {
@@ -36,12 +37,17 @@ namespace NoNameDev.CSharpCommon.Extensions.Text {
                 return value.Substring(0, length);
             }
         }
+
         public static string NullableTrim(this string value) {
             if (value == null) {
                 return null;
             } else {
                 return value.Trim();
             }
+        }
+
+        public static string RegExReplace(this string value, string pattern, string replacement) {
+            return Regex.Replace(value, pattern, replacement, RegexOptions.Compiled);
         }
 
         public static string RemoveDiacritics(this string value) {
@@ -57,14 +63,6 @@ namespace NoNameDev.CSharpCommon.Extensions.Text {
 
             return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
-        
-        public static string RegExReplace(this string value, string pattern, string replacement) {
-            return Regex.Replace(value, pattern, replacement, RegexOptions.Compiled);
-        }
-
-        public static string RemoveNonNumerics(this string value) {
-            return Regex.Replace(value, @"[^0-9]", "", RegexOptions.Compiled);
-        }
 
         public static string RemoveNonAlphaNumerics(this string value) {
             return Regex.Replace(value, @"[^0-9\w]", "", RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -74,12 +72,12 @@ namespace NoNameDev.CSharpCommon.Extensions.Text {
             return Regex.Replace(value, @"[^0-9\w\s]", "", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         }
 
-        public static string RemoveWhitespaces(this string value) {
-            return Regex.Replace(value, @"\s+", "", RegexOptions.Compiled);
+        public static string RemoveNonNumerics(this string value) {
+            return Regex.Replace(value, @"[^0-9]", "", RegexOptions.Compiled);
         }
 
-        public static string ReplaceWhitespaces(this string value, string replaceWidth) {
-            return Regex.Replace(value, @"\s+", replaceWidth, RegexOptions.Compiled);
+        public static string RemoveWhitespaces(this string value) {
+            return Regex.Replace(value, @"\s+", "", RegexOptions.Compiled);
         }
 
         public static string ReplaceMultiWhitespaceWithSingleSpace(this string value) {
@@ -88,6 +86,10 @@ namespace NoNameDev.CSharpCommon.Extensions.Text {
 
         public static string ReplaceNonAlphaNumericsWithSpace(this string value) {
             return Regex.Replace(value, "[^A-Za-z0-9 ]", " ");
+        }
+
+        public static string ReplaceWhitespaces(this string value, string replaceWidth) {
+            return Regex.Replace(value, @"\s+", replaceWidth, RegexOptions.Compiled);
         }
 
         public static string Right(this string value, int length) {
@@ -137,10 +139,6 @@ namespace NoNameDev.CSharpCommon.Extensions.Text {
             return value.TruncateWith(maxLength, null);
         }
 
-        public static string TruncateWithEllipsis(this string value, int maxLength) {
-            return value.TruncateWith(maxLength, "...");
-        }
-
         public static string TruncateWith(this string value, int maxLength, string suffix) {
             if (string.IsNullOrEmpty(value)) {
                 return value;
@@ -151,6 +149,10 @@ namespace NoNameDev.CSharpCommon.Extensions.Text {
             } else {
                 return value.Substring(0, maxLength);
             }
+        }
+
+        public static string TruncateWithEllipsis(this string value, int maxLength) {
+            return value.TruncateWith(maxLength, "...");
         }
     }
 }

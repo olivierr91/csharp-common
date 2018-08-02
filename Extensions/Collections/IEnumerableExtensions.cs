@@ -1,10 +1,12 @@
-﻿using System;
+﻿using NoNameDev.CSharpCommon.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace NoNameDev.CSharpCommon.Extensions.Collections {
-    public static class IEnumerableExtensions
-    {
+
+    public static class IEnumerableExtensions {
+
         public static bool ContainsAny<T>(this IEnumerable<T> source, params T[] values) {
             return values.Any(v => source.Contains(v));
         }
@@ -41,12 +43,16 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
             }
         }
 
-        public static IEnumerable<TResult> SelectDistinct<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector) {
-            return source.GroupBy(selector).Select(g => g.Key);
-        }
-
         public static string JoinString(this IEnumerable<string> source, string separator) {
             return String.Join(separator, source);
+        }
+
+        public static T RandomElement<T>(this IEnumerable<T> list) {
+            return RandomUtils.RandomElement(list);
+        }
+
+        public static IEnumerable<TResult> SelectDistinct<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector) {
+            return source.GroupBy(selector).Select(g => g.Key);
         }
 
         public static IEnumerable<IGrouping<TSourceKey, IGrouping<TKey, TSource>>> ThenBy<TSource, TKey, TSourceKey>(this IEnumerable<IGrouping<TSourceKey, TSource>> source, Func<TSource, TKey> keySelector) {

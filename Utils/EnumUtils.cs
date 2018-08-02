@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace NoNameDev.CSharpCommon.Utils {
-    public static class EnumUtils
-    {
+
+    public static class EnumUtils {
+
         public static List<T> GetList<T>() {
             return Enum.GetValues(typeof(T)).ToList<T>();
         }

@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace NoNameDev.CSharpCommon.TimeScheduling {
-    public class TimeSchedule {
 
+    public class TimeSchedule {
+        private static List<(int MinValue, int MaxValue)> _componentParameters = new List<(int MinValue, int MaxValue)>();
         private ITimeScheduleComponent _days = null;
         private ITimeScheduleComponent _hours = null;
+        private ITimeScheduleComponent _milliseconds = null;
         private ITimeScheduleComponent _minutes = null;
         private ITimeScheduleComponent _seconds = null;
-        private ITimeScheduleComponent _milliseconds = null;
-        private static List<(int MinValue, int MaxValue)> _componentParameters = new List<(int MinValue, int MaxValue)>();
 
         static TimeSchedule() {
             _componentParameters.Add((1, 31));
@@ -27,6 +26,14 @@ namespace NoNameDev.CSharpCommon.TimeScheduling {
             _minutes = minutes;
             _seconds = seconds;
             _milliseconds = milliseconds;
+        }
+
+        public static TimeSchedule Parse(string value) {
+            TimeSchedule scheduleTime = TryParseOrNull(value);
+            if (scheduleTime == null) {
+                throw new FormatException($"'{value}' cannot be parsed to {typeof(TimeSchedule).Name}.");
+            }
+            return scheduleTime;
         }
 
         public static TimeSchedule TryParseOrNull(string value) {
@@ -55,24 +62,8 @@ namespace NoNameDev.CSharpCommon.TimeScheduling {
             return null;
         }
 
-        public static TimeSchedule Parse(string value) {
-            TimeSchedule scheduleTime = TryParseOrNull(value);
-            if (scheduleTime == null) {
-                throw new FormatException($"'{value}' cannot be parsed to {typeof(TimeSchedule).Name}.");
-            }
-            return scheduleTime;
-        }
-
-        public bool Matches(DateTimeOffset value) {
-            return _days.Matches(value.Day) && _hours.Matches(value.Hour) && _minutes.Matches(value.Minute) && _seconds.Matches(value.Second) && _milliseconds.Matches(value.Millisecond);
-        }
-
         public List<ITimeScheduleComponent> GetComponents() {
             return new List<ITimeScheduleComponent>() { _days, _hours, _minutes, _seconds, _milliseconds };
-        }
-
-        public List<ITimeScheduleComponent> GetReverseComponents() {
-            return new List<ITimeScheduleComponent>() { _milliseconds, _seconds, _minutes, _hours, _days };
         }
 
         public TimeSpan GetMinInterval() {
@@ -160,8 +151,16 @@ namespace NoNameDev.CSharpCommon.TimeScheduling {
             return next;
         }
 
+        public List<ITimeScheduleComponent> GetReverseComponents() {
+            return new List<ITimeScheduleComponent>() { _milliseconds, _seconds, _minutes, _hours, _days };
+        }
+
         public TimeSpan GetTimeSpanToNextSchedule() {
             return GetNextSchedule() - DateTimeOffset.UtcNow;
+        }
+
+        public bool Matches(DateTimeOffset value) {
+            return _days.Matches(value.Day) && _hours.Matches(value.Hour) && _minutes.Matches(value.Minute) && _seconds.Matches(value.Second) && _milliseconds.Matches(value.Millisecond);
         }
 
         public override string ToString() {

@@ -2,11 +2,11 @@
 using System;
 
 namespace NoNameDev.CSharpCommon.TimeScheduling {
-    public class IntervalTimeComponent : ITimeScheduleComponent {
 
+    public class IntervalTimeComponent : ITimeScheduleComponent {
         private int _interval;
-        private int _minValue;
         private int _maxValue;
+        private int _minValue;
 
         public IntervalTimeComponent(int interval, int minValue, int maxValue) {
             if (_interval > (_maxValue - _minValue) + 1) {
@@ -17,22 +17,14 @@ namespace NoNameDev.CSharpCommon.TimeScheduling {
             _maxValue = maxValue;
         }
 
-        public int MinValue { get => _minValue; }
-        public int MaxValue { get => _maxValue; }
-        public int ValueRange { get => _maxValue - _minValue + 1; }
-
         public int Interval {
             get => _interval;
             set => _interval = value;
         }
 
-        public bool Matches(int value) {
-            return (value - _minValue) % _interval == 0;
-        }
-
-        public override string ToString() {
-            return $"*/{_interval}";
-        }
+        public int MaxValue { get => _maxValue; }
+        public int MinValue { get => _minValue; }
+        public int ValueRange { get => _maxValue - _minValue + 1; }
 
         public static bool TryParse(string value, int minValue, int maxValue, out IntervalTimeComponent result) {
             string strInterval = RegExUtils.MatchSingleGroupOrNull(@"\*\/([0-9]+)", value);
@@ -43,6 +35,10 @@ namespace NoNameDev.CSharpCommon.TimeScheduling {
             int interval = Int32.Parse(strInterval);
             result = new IntervalTimeComponent(interval, minValue, maxValue);
             return true;
+        }
+
+        public bool Matches(int value) {
+            return (value - _minValue) % _interval == 0;
         }
 
         public int MinInterval() {
@@ -65,6 +61,10 @@ namespace NoNameDev.CSharpCommon.TimeScheduling {
             } else {
                 return timeComponentValue;
             }
+        }
+
+        public override string ToString() {
+            return $"*/{_interval}";
         }
     }
 }

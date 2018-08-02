@@ -3,37 +3,42 @@ using System;
 using System.Linq;
 
 namespace NoNameDev.CSharpCommon.IO {
+
     public enum FileFormat {
+
         [MimeType("application/octet-stream")]
         Unknown = 0,
+
         [MimeType("image/jpeg")]
         [FileExtensions("jpg", "jpeg")]
         Jpeg = 1,
+
         [MimeType("image/png")]
         [FileExtensions("png")]
         Png = 2,
+
         [MimeType("image/bmp")]
         [FileExtensions("bmp")]
         Bmp = 3,
+
         [MimeType("image/gif")]
         [FileExtensions("gif")]
         Gif = 4,
+
         [MimeType("application/pdf")]
         [FileExtensions("pdf")]
         Pdf = 5,
+
         [MimeType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")]
         [FileExtensions("xlsx")]
         Xlsx = 6,
+
         [MimeType("text/html")]
         [FileExtensions("html", "htm")]
         Html = 7
     }
 
     public static class FileFormatExtensions {
-        public static string MimeType(this FileFormat value) {
-            var attribute = value.GetAttributes<MimeTypeAttribute>().First();
-            return attribute.MimeType;
-        }
 
         public static FileFormat FromExtension(string extension) {
             foreach (FileFormat fileFormat in Enum.GetValues(typeof(FileFormat))) {
@@ -43,15 +48,21 @@ namespace NoNameDev.CSharpCommon.IO {
             }
             return FileFormat.Unknown;
         }
+
+        public static string MimeType(this FileFormat value) {
+            var attribute = value.GetAttributes<MimeTypeAttribute>().First();
+            return attribute.MimeType;
+        }
     }
 
     [AttributeUsage(AttributeTargets.Field)]
     public class FileExtensionsAttribute : Attribute {
-        public string[] Extensions { get; set; }
 
         public FileExtensionsAttribute(params string[] extensions) {
             Extensions = extensions;
         }
+
+        public string[] Extensions { get; set; }
     }
 
     [AttributeUsage(AttributeTargets.Field)]

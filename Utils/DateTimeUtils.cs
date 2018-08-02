@@ -1,8 +1,9 @@
 ﻿using System;
 
 namespace NoNameDev.CSharpCommon.Utils {
-    public static class DateTimeUtils
-    {
+
+    public static class DateTimeUtils {
+
         public static DateTime FromDateAndTime(DateTime date, DateTime time) {
             return new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, time.Second, time.Millisecond);
         }

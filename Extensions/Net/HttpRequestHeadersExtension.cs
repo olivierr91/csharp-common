@@ -2,8 +2,9 @@
 using System.Net.Http.Headers;
 
 namespace NoNameDev.CSharpCommon.Extensions.Net {
-    public static class HttpRequestHeadersExtension
-    {
+
+    public static class HttpRequestHeadersExtension {
+
         public static void AddOrReplace(this HttpRequestHeaders headers, string name, string value) {
             if (headers.Contains(name)) {
                 headers.Remove(name);
@@ -12,7 +13,7 @@ namespace NoNameDev.CSharpCommon.Extensions.Net {
         }
 
         public static void AddOrReplaceAll(this HttpRequestHeaders headers, Dictionary<string, string> values) {
-            foreach(KeyValuePair<string, string> value in values) {
+            foreach (KeyValuePair<string, string> value in values) {
                 headers.AddOrReplace(value.Key, value.Value);
             }
         }

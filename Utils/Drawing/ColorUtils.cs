@@ -2,8 +2,9 @@
 using System.Drawing;
 
 namespace NoNameDev.CSharpCommon.Utils.Drawing {
-    public static class ColorUtils
-    {
+
+    public static class ColorUtils {
+
         public static Color FromHex(string hex) {
             hex = hex.TrimStart('#');
             try {

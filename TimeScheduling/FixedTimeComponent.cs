@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace NoNameDev.CSharpCommon.TimeScheduling {
-    public class FixedTimeComponent : ITimeScheduleComponent {
 
-        private HashSet<int> _values = new HashSet<int>();
-        private int _minValue;
+    public class FixedTimeComponent : ITimeScheduleComponent {
         private int _maxValue;
+        private int _minValue;
+        private HashSet<int> _values = new HashSet<int>();
 
         public FixedTimeComponent(HashSet<int> values, int minValue, int maxValue) {
             if (values.Count == 0) {
@@ -20,17 +20,9 @@ namespace NoNameDev.CSharpCommon.TimeScheduling {
             _maxValue = maxValue;
         }
 
-        public int MinValue { get => _minValue; }
         public int MaxValue { get => _maxValue; }
+        public int MinValue { get => _minValue; }
         public int ValueRange { get => _maxValue - _minValue + 1; }
-
-        public bool Matches(int value) {
-            return _values.Contains(value);
-        }
-
-        public override string ToString() {
-            return String.Join(",", _values);
-        }
 
         public static bool TryParse(string value, int minValue, int maxValue, out FixedTimeComponent result) {
             var values = new HashSet<int>();
@@ -50,15 +42,6 @@ namespace NoNameDev.CSharpCommon.TimeScheduling {
             return true;
         }
 
-        public int MinInterval() {
-            if (_values.Count > 1) {
-                int minInterval = GetIntervals().Min(i => Math.Abs(i.UpperBound - i.LowerBound));
-                return Math.Min(minInterval, (_values.First() - _minValue) + (_maxValue + 1 - _values.Last()));
-            } else {
-                return _maxValue - _minValue + 1;
-            }
-        }
-
         public List<(int LowerBound, int UpperBound)> GetIntervals() {
             var intervals = new List<(int LowerBound, int UpperBound)>(); ;
             List<int> orderedValues = _values.OrderBy(v => v).ToList();
@@ -70,6 +53,19 @@ namespace NoNameDev.CSharpCommon.TimeScheduling {
                 previousValue = value;
             }
             return intervals;
+        }
+
+        public bool Matches(int value) {
+            return _values.Contains(value);
+        }
+
+        public int MinInterval() {
+            if (_values.Count > 1) {
+                int minInterval = GetIntervals().Min(i => Math.Abs(i.UpperBound - i.LowerBound));
+                return Math.Min(minInterval, (_values.First() - _minValue) + (_maxValue + 1 - _values.Last()));
+            } else {
+                return _maxValue - _minValue + 1;
+            }
         }
 
         public int NextMatchExclusive(int timeComponentValue) {
@@ -86,6 +82,10 @@ namespace NoNameDev.CSharpCommon.TimeScheduling {
             } else {
                 return orderedValues.First();
             }
+        }
+
+        public override string ToString() {
+            return String.Join(",", _values);
         }
     }
 }

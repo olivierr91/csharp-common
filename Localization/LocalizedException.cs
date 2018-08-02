@@ -1,17 +1,13 @@
 ﻿using System;
 
 namespace NoNameDev.CSharpCommon.Localization {
-    public class LocalizedException : Exception
-    {
-        public string LocalizedMessage { get; }
-        public LocalizedString LocalizedString { get; }
+
+    public class LocalizedException : Exception {
 
         public LocalizedException(string message) : base(message) {
-            
         }
 
         public LocalizedException(string message, Exception ex) : base(message, ex) {
-
         }
 
         public LocalizedException(LocalizedString localizedMessage) : base(localizedMessage.NeutralValue) {
@@ -24,10 +20,14 @@ namespace NoNameDev.CSharpCommon.Localization {
             LocalizedMessage = localizedMessage.LocalizedValue;
         }
 
+        public string LocalizedMessage { get; }
+        public LocalizedString LocalizedString { get; }
+
         #region Test-Related Definitions
 
-        protected LocalizedException() : base() { }
+        protected LocalizedException() : base() {
+        }
 
-        #endregion
+        #endregion Test-Related Definitions
     }
 }

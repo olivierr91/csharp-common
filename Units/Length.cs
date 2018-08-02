@@ -2,11 +2,11 @@
 using System;
 
 namespace NoNameDev.CSharpCommon.Units {
-    public class Length : UnitAwareValue
-    {
+
+    public class Length : UnitAwareValue {
         private LengthUnits _units;
 
-        public Length(decimal? value, LengthUnits units): base(value, units) {
+        public Length(decimal? value, LengthUnits units) : base(value, units) {
             if (units == LengthUnits.None && value.HasValue && value != 0) {
                 throw new ArgumentException($"Unit {units} is not valid for non-empty values.");
             }
@@ -16,18 +16,14 @@ namespace NoNameDev.CSharpCommon.Units {
 
         public LengthUnits Units { get => _units; }
 
-        public Length ConvertTo(LengthUnits targetUnits) {
-            return new Length(UnitConverter.Convert(_value, _units, targetUnits), targetUnits);
-        }
-    
-        public static bool operator ==(Length value1, Length value2) {
-            if (ReferenceEquals(value1,  null) && ReferenceEquals(value2, null)) {
-                return true;
-            } else if (ReferenceEquals(value1, null) || ReferenceEquals(value2, null)) {
-                return false;
+        public static (Length Value1, Length Value2) Equalize(Length value1, Length value2) {
+            if (value1 == null || value2 == null) {
+                return (value1, value2);
+            } else if (value1.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence < value2.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence) {
+                return (value1, value2.ConvertTo(value1.Units));
+            } else {
+                return (value1.ConvertTo(value2.Units), value2);
             }
-            var equalizedValues = Equalize(value1, value2);
-            return equalizedValues.Value1?.Value == equalizedValues.Value2?.Value;
         }
 
         public static bool operator !=(Length value1, Length value2) {
@@ -42,8 +38,18 @@ namespace NoNameDev.CSharpCommon.Units {
             return new Area(equalizedValues.Value1.Value * equalizedValues.Value2.Value, FindKnownUnit<AreaUnits>(equalizedValues.Value1.Units, 2));
         }
 
-        public override int GetHashCode() {
-            return new HashCodeBuilder().Add(_value).Add(_units).GetHashCode();
+        public static bool operator ==(Length value1, Length value2) {
+            if (ReferenceEquals(value1, null) && ReferenceEquals(value2, null)) {
+                return true;
+            } else if (ReferenceEquals(value1, null) || ReferenceEquals(value2, null)) {
+                return false;
+            }
+            var equalizedValues = Equalize(value1, value2);
+            return equalizedValues.Value1?.Value == equalizedValues.Value2?.Value;
+        }
+
+        public Length ConvertTo(LengthUnits targetUnits) {
+            return new Length(UnitConverter.Convert(_value, _units, targetUnits), targetUnits);
         }
 
         public override bool Equals(Object obj) {
@@ -55,14 +61,8 @@ namespace NoNameDev.CSharpCommon.Units {
             return equalizedValues.Value1?.Value == equalizedValues.Value2?.Value;
         }
 
-        public static (Length Value1, Length Value2) Equalize(Length value1, Length value2) {
-            if (value1 == null || value2 == null) {
-                return (value1, value2);
-            } else if (value1.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence < value2.Units.GetAttribute<UnitPrecedenceAttribute>().Precedence) {
-                return (value1, value2.ConvertTo(value1.Units));
-            } else {
-                return (value1.ConvertTo(value2.Units), value2);
-            }
+        public override int GetHashCode() {
+            return new HashCodeBuilder().Add(_value).Add(_units).GetHashCode();
         }
     }
 }

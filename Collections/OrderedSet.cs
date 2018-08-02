@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace NoNameDev.CSharpCommon.Extensions.Collections {
+
     public class OrderedSet<T> : ISet<T>, IReadOnlyCollection<T> {
         private readonly IDictionary<T, LinkedListNode<T>> _dictionary;
         private readonly LinkedList<T> _linkedList;
@@ -12,7 +13,7 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
         }
 
         public OrderedSet(IEnumerable<T> collection) : this(EqualityComparer<T>.Default) {
-            foreach(var item in collection) {
+            foreach (var item in collection) {
                 Add(item);
             }
         }
@@ -43,10 +44,9 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
             return true;
         }
 
-
         public int AddRange(IEnumerable<T> items) {
             int added = 0;
-            foreach(T item in items) {
+            foreach (T item in items) {
                 if (Add(item)) {
                     added++;
                 }
@@ -59,14 +59,17 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
             _dictionary.Clear();
         }
 
-        public bool Remove(T item) {
-            LinkedListNode<T> node;
-            if (!_dictionary.TryGetValue(item, out node)) {
-                return false;
-            } else {
-                _dictionary.Remove(item);
-                _linkedList.Remove(node);
-                return true;
+        public bool Contains(T item) {
+            return _dictionary.ContainsKey(item);
+        }
+
+        public void CopyTo(T[] array, int arrayIndex) {
+            _linkedList.CopyTo(array, arrayIndex);
+        }
+
+        public void ExceptWith(IEnumerable<T> other) {
+            foreach (var item in other) {
+                Remove(item);
             }
         }
 
@@ -76,34 +79,6 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
 
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
-        }
-
-        public bool Contains(T item) {
-            return _dictionary.ContainsKey(item);
-        }
-
-        public void CopyTo(T[] array, int arrayIndex) {
-            _linkedList.CopyTo(array, arrayIndex);
-        }
-
-        public bool SetEquals(IEnumerable<T> other) {
-            int count = 0;
-            foreach(var item in other) {
-                if (!_dictionary.ContainsKey(item)) {
-                    return false;
-                }
-                count++;
-            }
-            if (count != _dictionary.Count) {
-                return false;
-            }
-            return true;
-        }
-
-        public void ExceptWith(IEnumerable<T> other) {
-            foreach (var item in other) {
-                Remove(item);
-            }
         }
 
         public void IntersectWith(IEnumerable<T> other) {
@@ -128,6 +103,31 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
 
         public bool Overlaps(IEnumerable<T> other) {
             throw new NotImplementedException();
+        }
+
+        public bool Remove(T item) {
+            LinkedListNode<T> node;
+            if (!_dictionary.TryGetValue(item, out node)) {
+                return false;
+            } else {
+                _dictionary.Remove(item);
+                _linkedList.Remove(node);
+                return true;
+            }
+        }
+
+        public bool SetEquals(IEnumerable<T> other) {
+            int count = 0;
+            foreach (var item in other) {
+                if (!_dictionary.ContainsKey(item)) {
+                    return false;
+                }
+                count++;
+            }
+            if (count != _dictionary.Count) {
+                return false;
+            }
+            return true;
         }
 
         public void SymmetricExceptWith(IEnumerable<T> other) {

@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace NoNameDev.CSharpCommon.Units {
-    public abstract class UnitAwareValue
-    {
+
+    public abstract class UnitAwareValue {
         protected decimal? _value;
         private Enum _knownUnits;
 
@@ -19,6 +19,10 @@ namespace NoNameDev.CSharpCommon.Units {
         public Enum KnownUnits { get => _knownUnits; }
         public decimal? Value { get => _value; }
 
+        public string GetUnitAbberviation() {
+            return ResourceUtils.GetString(KnownUnits, KnownUnits.ToString() + "_Abbr");
+        }
+
         public override string ToString() {
             return $"{_value} {GetUnitAbberviation()}";
         }
@@ -29,10 +33,6 @@ namespace NoNameDev.CSharpCommon.Units {
             } else {
                 return _value?.ToString(numberFormat);
             }
-        }
-
-        public string GetUnitAbberviation() {
-            return ResourceUtils.GetString(KnownUnits, KnownUnits.ToString() + "_Abbr");
         }
 
         protected static T FindKnownUnit<T>(Enum baseUnit, int baseUnitCount) {
@@ -48,15 +48,14 @@ namespace NoNameDev.CSharpCommon.Units {
             throw new ArgumentException($"A unit with the specified base units could not be found.");
         }
 
-        protected static Dictionary<Enum, int> GetBaseUnits(Enum knownUnit) {
-            return knownUnit.GetAttributes<UnitBaseAttribute>().ToDictionary(b => (Enum)Enum.Parse(b.BaseUnitType, b.BaseUnitValue.ToString()), b => b.BaseUnitCount);
-        }
-
         protected static (T Units, int Count) GetBaseUnit<T>(Enum knownUnit) {
             return knownUnit.GetAttributes<UnitBaseAttribute>().Where(b => b.BaseUnitType == typeof(T))
                 .Select(b => ((T)Enum.Parse(b.BaseUnitType, b.BaseUnitValue.ToString()), b.BaseUnitCount))
                 .Single();
         }
 
+        protected static Dictionary<Enum, int> GetBaseUnits(Enum knownUnit) {
+            return knownUnit.GetAttributes<UnitBaseAttribute>().ToDictionary(b => (Enum)Enum.Parse(b.BaseUnitType, b.BaseUnitValue.ToString()), b => b.BaseUnitCount);
+        }
     }
 }

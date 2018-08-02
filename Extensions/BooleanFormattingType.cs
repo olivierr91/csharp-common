@@ -1,6 +1,6 @@
 ﻿namespace NoNameDev.CSharpCommon.Extensions {
-    public enum BooleanFormattingType
-    {
+
+    public enum BooleanFormattingType {
         YesNo = 0
     }
 }

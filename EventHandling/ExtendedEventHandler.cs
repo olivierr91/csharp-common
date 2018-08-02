@@ -5,20 +5,12 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace NoNameDev.CSharpCommon.EventHandling {
-    public class ExtendedEventHandler<T> where T : EventArgs {
-        private List<ExtendedEventHandlerSubscriber<T>> _subscribers;
-        private List<ExtendedEventHandler<T>> _forwardedHandlers;
-        private SemaphoreSlim _waitToken;
-        private int _waitCount = 0;
 
-        public void AddHandler(Action<object, T> action) {
-            if (_subscribers == null) {
-                _subscribers = new List<ExtendedEventHandlerSubscriber<T>>();
-            }
-            if (!_subscribers.Any(s => s.Action == action)) {
-                _subscribers.Add(new ExtendedEventHandlerSubscriber<T>(action));
-            }
-        }
+    public class ExtendedEventHandler<T> where T : EventArgs {
+        private List<ExtendedEventHandler<T>> _forwardedHandlers;
+        private List<ExtendedEventHandlerSubscriber<T>> _subscribers;
+        private int _waitCount = 0;
+        private SemaphoreSlim _waitToken;
 
         public void AddAsyncHandler(Func<object, T, Task> task) {
             if (_subscribers == null) {
@@ -29,42 +21,13 @@ namespace NoNameDev.CSharpCommon.EventHandling {
             }
         }
 
-        public async Task Wait(Action<object, T> action, CancellationToken cancellationToken) {
-            if (_waitToken == null) {
-                _waitToken = new SemaphoreSlim(0);
-            }
-            _waitCount++;
-            AddHandler(action);
-            await _waitToken.WaitAsync(cancellationToken);
-            RemoveHandler(action);
-            _waitCount--;
-        }
-
-        public void RemoveHandler(Action<object, T> action) {
+        public void AddHandler(Action<object, T> action) {
             if (_subscribers == null) {
-                return;
+                _subscribers = new List<ExtendedEventHandlerSubscriber<T>>();
             }
-            _subscribers.RemoveAll(s => s.Action == action);
-            if (_subscribers.Count == 0) {
-                _subscribers = null;
+            if (!_subscribers.Any(s => s.Action == action)) {
+                _subscribers.Add(new ExtendedEventHandlerSubscriber<T>(action));
             }
-        }
-
-        public void RemoveAsyncHandler(Func<object, T, Task> task) {
-            if (_subscribers == null) {
-                return;
-            }
-            _subscribers.RemoveAll(s => s.Task == task);
-            if (_subscribers.Count == 0) {
-                _subscribers = null;
-            }
-        }
-
-        public void Forward(ExtendedEventHandler<T> target) {
-            if (_forwardedHandlers == null) {
-                _forwardedHandlers = new List<ExtendedEventHandler<T>>();
-            }
-            _forwardedHandlers.Add(target);
         }
 
         public void CancelForward(ExtendedEventHandler<T> target) {
@@ -75,6 +38,13 @@ namespace NoNameDev.CSharpCommon.EventHandling {
             if (_forwardedHandlers.Count == 0) {
                 _forwardedHandlers = null;
             }
+        }
+
+        public void Forward(ExtendedEventHandler<T> target) {
+            if (_forwardedHandlers == null) {
+                _forwardedHandlers = new List<ExtendedEventHandler<T>>();
+            }
+            _forwardedHandlers.Add(target);
         }
 
         public void Invoke(object sender, T eventArgs) {
@@ -115,6 +85,37 @@ namespace NoNameDev.CSharpCommon.EventHandling {
             if (_waitToken != null) {
                 _waitToken.Release(_waitCount);
             }
+        }
+
+        public void RemoveAsyncHandler(Func<object, T, Task> task) {
+            if (_subscribers == null) {
+                return;
+            }
+            _subscribers.RemoveAll(s => s.Task == task);
+            if (_subscribers.Count == 0) {
+                _subscribers = null;
+            }
+        }
+
+        public void RemoveHandler(Action<object, T> action) {
+            if (_subscribers == null) {
+                return;
+            }
+            _subscribers.RemoveAll(s => s.Action == action);
+            if (_subscribers.Count == 0) {
+                _subscribers = null;
+            }
+        }
+
+        public async Task Wait(Action<object, T> action, CancellationToken cancellationToken) {
+            if (_waitToken == null) {
+                _waitToken = new SemaphoreSlim(0);
+            }
+            _waitCount++;
+            AddHandler(action);
+            await _waitToken.WaitAsync(cancellationToken);
+            RemoveHandler(action);
+            _waitCount--;
         }
     }
 }
