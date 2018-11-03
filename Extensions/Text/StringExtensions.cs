@@ -10,8 +10,7 @@ namespace NoNameDev.CSharpCommon.Extensions.Text {
         public static string Append(this string value, string appendValue = null, string delimiter = "") {
             if (String.IsNullOrEmpty(appendValue)) {
                 return value;
-            }
-            if (!String.IsNullOrEmpty(value)) {
+            } else if (!String.IsNullOrWhiteSpace(value)) {
                 return value + delimiter + appendValue;
             } else {
                 return value + appendValue;

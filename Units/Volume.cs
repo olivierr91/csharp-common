@@ -27,6 +27,10 @@ namespace NoNameDev.CSharpCommon.Units {
             }
         }
 
+        public static bool operator !=(Volume value1, Volume value2) {
+            return !(value1 == value2);
+        }
+
         public static Volume operator *(Volume value1, decimal? value2) {
             if (value1 == null || value2 == null) {
                 return null;
@@ -54,8 +58,31 @@ namespace NoNameDev.CSharpCommon.Units {
             return new Volume(equalizedValues.Value1.Value + equalizedValues.Value2.Value, equalizedValues.Value1.Units);
         }
 
+        public static bool operator ==(Volume value1, Volume value2) {
+            if (ReferenceEquals(value1, null) && ReferenceEquals(value2, null)) {
+                return true;
+            } else if (ReferenceEquals(value1, null) || ReferenceEquals(value2, null)) {
+                return false;
+            }
+            var equalizedValues = Equalize(value1, value2);
+            return equalizedValues.Value1?.Value == equalizedValues.Value2?.Value;
+        }
+
         public Volume ConvertTo(VolumeUnits targetUnits) {
             return new Volume(UnitConverter.Convert(_value, _units, targetUnits), targetUnits);
+        }
+
+        public override bool Equals(Object obj) {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Volume volume = (Volume)obj;
+            var equalizedValues = Equalize(this, volume);
+            return equalizedValues.Value1?.Value == equalizedValues.Value2?.Value;
+        }
+
+        public override int GetHashCode() {
+            return new HashCodeBuilder().Add(_value).Add(_units).GetHashCode();
         }
     }
 }

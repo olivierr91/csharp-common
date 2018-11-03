@@ -25,7 +25,7 @@ namespace NoNameDev.CSharpCommon.Utils.Text {
             var results = new List<string>();
             var regex = new Regex(pattern, regexOptions);
             Match match = regex.Match(text);
-            if (match.Success && match.Groups.Count == 2) {
+            if (match.Success && match.Groups.Count >= 2) {
                 foreach (Group group in match.Groups) {
                     results.Add(group.Value);
                 }

@@ -3,7 +3,7 @@ using System;
 
 namespace NoNameDev.CSharpCommon.Units {
 
-    public class Length : UnitAwareValue {
+    public class Length : UnitAwareValue, IComparable, IComparable<Length> {
         private LengthUnits _units;
 
         public Length(decimal? value, LengthUnits units) : base(value, units) {
@@ -46,6 +46,18 @@ namespace NoNameDev.CSharpCommon.Units {
             }
             var equalizedValues = Equalize(value1, value2);
             return equalizedValues.Value1?.Value == equalizedValues.Value2?.Value;
+        }
+
+        public int CompareTo(Length length) {
+            var equalizedValues = Equalize(this, length);
+            return Nullable.Compare(equalizedValues.Value1?.Value, equalizedValues.Value2?.Value);
+        }
+
+        public int CompareTo(object obj) {
+            if (obj == null || GetType() != obj.GetType())
+                throw new ArgumentException($"Cannot compare to object {obj}.");
+
+            return CompareTo((Length)obj);
         }
 
         public Length ConvertTo(LengthUnits targetUnits) {
