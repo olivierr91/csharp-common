@@ -5,10 +5,10 @@ namespace NoNameDev.CSharpCommon.Extensions.Drawing {
     public static class ColorExtensions {
 
         public static string ToHex(this Color color) {
-            if (color.A != 1) {
-                return $"#{color.R:2X}{color.G:2X}{color.B:2X}{color.A:2X}";
+            if (color.A != 0) {
+                return $"#{color.R:X2}{color.G:X2}{color.B:X2}{color.A:X2}";
             } else {
-                return $"#{color.R:2X}{color.G:2X}{color.B:2X}";
+                return $"#{color.R:X2}{color.G:X2}{color.B:X2}";
             }
         }
     }
