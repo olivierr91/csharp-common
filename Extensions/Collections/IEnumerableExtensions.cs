@@ -43,6 +43,13 @@ namespace NoNameDev.CSharpCommon.Extensions.Collections {
             }
         }
 
+        public static IEnumerable<T> ForEachThenReturn<T>(this IEnumerable<T> source, Action<T> action) {
+            foreach (var item in source) {
+                action(item);
+            }
+            return source;
+        }
+
         public static string JoinString(this IEnumerable<string> source, string separator) {
             return String.Join(separator, source);
         }
