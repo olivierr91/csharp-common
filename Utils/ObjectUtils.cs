@@ -38,5 +38,13 @@ namespace NoNameDev.CSharpCommon.Utils {
         public static bool IsTypeOfOrSubTypeOf(Type objectType, Type type) {
             return objectType == type || objectType.IsSubclassOf(type);
         }
+
+        public static TValue TryConvertTo<TValue>(object obj) {
+            try {
+                return ConvertTo<TValue>(obj);
+            } catch (Exception) {
+                return default;
+            }
+        }
     }
 }
