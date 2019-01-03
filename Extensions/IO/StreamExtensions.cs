@@ -22,5 +22,11 @@ namespace NoNameDev.CSharpCommon.Extensions.IO {
                 return reader.ReadToEnd();
             }
         }
+
+        public static void SaveToFile(this Stream stream, Stream outStream) {
+            stream.Seek(0, SeekOrigin.Begin);
+            stream.CopyTo(outStream);
+            outStream.Close();
+        }
     }
 }

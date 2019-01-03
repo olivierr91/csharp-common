@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace NoNameDev.CSharpCommon.IO {
+namespace NoNameDev.CSharpCommon.Utils.IO {
 
     public static class StreamUtils {
 
