@@ -1,9 +1,9 @@
-﻿using NoNameDev.CSharpCommon.Extensions.Collections;
+﻿using CSharpCommon.Extensions.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NoNameDev.CSharpCommon.Utils {
+namespace CSharpCommon.Utils {
 
     public static class EnumUtils {
 

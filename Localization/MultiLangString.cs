@@ -1,8 +1,8 @@
-﻿using NoNameDev.CSharpCommon.Extensions.Collections;
+﻿using CSharpCommon.Extensions.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace NoNameDev.CSharpCommon.Localization {
+namespace CSharpCommon.Localization {
 
     public class MultiLangString {
         private Dictionary<CultureInfo, string> _values = new Dictionary<CultureInfo, string>();

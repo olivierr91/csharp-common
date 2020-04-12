@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NoNameDev.CSharpCommon.Extensions {
+namespace CSharpCommon.Extensions {
 
     public static class DateTimeOffsetExtensions {
 

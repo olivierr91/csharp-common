@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NoNameDev.CSharpCommon.Extensions {
+namespace CSharpCommon.Extensions {
 
     public static class TypeExtensions {
 

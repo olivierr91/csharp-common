@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NoNameDev.CSharpCommon.TimeScheduling {
+namespace CSharpCommon.TimeScheduling {
 
     public class TimeSchedule {
         private static List<(int MinValue, int MaxValue)> _componentParameters = new List<(int MinValue, int MaxValue)>();

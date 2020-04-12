@@ -1,4 +1,4 @@
-﻿namespace NoNameDev.CSharpCommon.Utils.Text {
+﻿namespace CSharpCommon.Utils.Text {
 
     public static class StringUtils {
 

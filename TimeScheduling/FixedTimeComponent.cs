@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NoNameDev.CSharpCommon.TimeScheduling {
+namespace CSharpCommon.TimeScheduling {
 
     public class FixedTimeComponent : ITimeScheduleComponent {
         private int _maxValue;

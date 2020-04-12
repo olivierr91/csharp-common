@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NoNameDev.CSharpCommon.Utils {
-
+namespace CSharpCommon.Utils.Randomization
+{
     public static class RandomUtils {
         public static readonly Random _random = new Random();
 
@@ -27,6 +27,10 @@ namespace NoNameDev.CSharpCommon.Utils {
 
         public static string RandomEmail(int length) {
             return $"{RandomLowercaseAlphaString((length - 4) / 2)}@{RandomLowercaseAlphaString((length - 4) / 2)}.com";
+        }
+
+        public static string RandomPhoneNumber() {
+            return $"{RandomNumericString(3)}-{RandomNumericString(3)}-{RandomNumericString(4)}";
         }
 
         public static T RandomEnum<T>() {

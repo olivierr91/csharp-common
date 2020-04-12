@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace NoNameDev.CSharpCommon.Extensions.Drawing {
+namespace CSharpCommon.Extensions.Drawing {
 
     public static class ColorExtensions {
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NoNameDev.CSharpCommon.Units {
+namespace CSharpCommon.Units {
 
     public class UnitConverter {
 

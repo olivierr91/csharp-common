@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NoNameDev.CSharpCommon.Units {
+namespace CSharpCommon.Units {
 
     public class UnitBaseAttribute : Attribute {
 

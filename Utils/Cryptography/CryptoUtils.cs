@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace NoNameDev.CSharpCommon.Utils.Cryptography {
+namespace CSharpCommon.Utils.Cryptography {
 
     public class CryptoUtils {
 

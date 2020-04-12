@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NoNameDev.CSharpCommon.Utils {
+namespace CSharpCommon.Utils {
 
     public static class DateTimeOffsetUtils {
         public static readonly DateTimeOffset DATELESS_DATETIME = new DateTimeOffset(2000, 01, 01, 0, 0, 0, TimeSpan.Zero);

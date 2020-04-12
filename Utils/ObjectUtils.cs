@@ -1,7 +1,7 @@
-﻿using NoNameDev.CSharpCommon.Extensions;
+﻿using CSharpCommon.Extensions;
 using System;
 
-namespace NoNameDev.CSharpCommon.Utils {
+namespace CSharpCommon.Utils {
 
     public static class ObjectUtils {
 

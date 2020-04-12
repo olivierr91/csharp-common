@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NoNameDev.CSharpCommon.Utils {
+namespace CSharpCommon.Utils {
 
     public static class DateTimeUtils {
 

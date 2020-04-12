@@ -1,4 +1,4 @@
-﻿namespace NoNameDev.CSharpCommon.TimeScheduling {
+﻿namespace CSharpCommon.TimeScheduling {
 
     public interface ITimeScheduleComponent {
         int MaxValue { get; }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NoNameDev.CSharpCommon.Utils.Resources {
+namespace CSharpCommon.Utils.Resources {
 
     public class ResourceNotFoundException : Exception {
 

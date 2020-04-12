@@ -1,9 +1,9 @@
-﻿using NoNameDev.CSharpCommon.Utils;
+﻿using CSharpCommon.Utils.Randomization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NoNameDev.CSharpCommon.Extensions.Collections {
+namespace CSharpCommon.Extensions.Collections {
 
     public static class IEnumerableExtensions {
 

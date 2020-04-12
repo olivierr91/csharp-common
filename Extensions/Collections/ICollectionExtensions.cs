@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NoNameDev.CSharpCommon.Extensions.Collections {
+namespace CSharpCommon.Extensions.Collections {
 
     public static class ICollectionExtensions {
 

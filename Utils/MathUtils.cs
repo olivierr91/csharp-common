@@ -1,8 +1,8 @@
-﻿using NoNameDev.CSharpCommon.Extensions.Text;
+﻿using CSharpCommon.Extensions.Text;
 using System;
 using System.Linq;
 
-namespace NoNameDev.CSharpCommon.Utils {
+namespace CSharpCommon.Utils {
 
     public static class MathUtils {
 

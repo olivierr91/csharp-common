@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace NoNameDev.CSharpCommon.Extensions.Text {
+namespace CSharpCommon.Extensions.Text {
 
     public static class StringExtensions {
 

@@ -1,7 +1,7 @@
-﻿using NoNameDev.CSharpCommon.Extensions;
+﻿using CSharpCommon.Extensions;
 using System;
 
-namespace NoNameDev.CSharpCommon.Units {
+namespace CSharpCommon.Units {
 
     public class Area : UnitAwareValue {
         private AreaUnits _units;

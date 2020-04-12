@@ -1,8 +1,8 @@
-using NoNameDev.CSharpCommon.Extensions;
+using CSharpCommon.Extensions;
 using System;
 using System.Linq;
 
-namespace NoNameDev.CSharpCommon.IO {
+namespace CSharpCommon.IO {
 
     public enum FileFormat {
 

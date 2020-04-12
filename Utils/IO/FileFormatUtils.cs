@@ -1,9 +1,9 @@
-using NoNameDev.CSharpCommon.Extensions;
-using NoNameDev.CSharpCommon.IO;
+using CSharpCommon.Extensions;
+using CSharpCommon.IO;
 using System;
 using System.Linq;
 
-namespace NoNameDev.CSharpCommon.Utils.IO {
+namespace CSharpCommon.Utils.IO {
 
     public static class FileFormatUtils {
 

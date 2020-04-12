@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NoNameDev.CSharpCommon.Localization {
+namespace CSharpCommon.Localization {
 
     public class LocalizedException : Exception {
 

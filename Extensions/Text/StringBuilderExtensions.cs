@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace NoNameDev.CSharpCommon.Extensions.Text {
+namespace CSharpCommon.Extensions.Text {
 
     public static class StringBuilderExtensions {
 

@@ -1,6 +1,6 @@
-﻿using NoNameDev.CSharpCommon.Utils.Resources;
+﻿using CSharpCommon.Utils.Resources;
 
-namespace NoNameDev.CSharpCommon.Units {
+namespace CSharpCommon.Units {
 
     public enum AreaUnits {
 

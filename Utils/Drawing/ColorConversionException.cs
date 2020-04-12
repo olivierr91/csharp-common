@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NoNameDev.CSharpCommon.Utils.Drawing {
+namespace CSharpCommon.Utils.Drawing {
 
     public class ColorConversionException : Exception {
 

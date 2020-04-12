@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace NoNameDev.CSharpCommon.Extensions.Reflection {
+namespace CSharpCommon.Extensions.Reflection {
 
     public static class MemberInfoExtensions {
 

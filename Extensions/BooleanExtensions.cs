@@ -1,6 +1,6 @@
-﻿using NoNameDev.CSharpCommon.Utils.Resources;
+﻿using CSharpCommon.Utils.Resources;
 
-namespace NoNameDev.CSharpCommon.Extensions {
+namespace CSharpCommon.Extensions {
 
     public static class BooleanExtensions {
 

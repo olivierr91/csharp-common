@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace NoNameDev.CSharpCommon.Utils.Drawing {
+namespace CSharpCommon.Utils.Drawing {
 
     public static class ColorUtils {
 

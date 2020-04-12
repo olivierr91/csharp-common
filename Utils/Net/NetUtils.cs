@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace NoNameDev.CSharpCommon.Utils.Net {
+namespace CSharpCommon.Utils.Net {
 
     public static class NetUtils {
 

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace NoNameDev.CSharpCommon.Extensions.IO {
+namespace CSharpCommon.Extensions.IO {
 
     public static class StreamExtensions {
 

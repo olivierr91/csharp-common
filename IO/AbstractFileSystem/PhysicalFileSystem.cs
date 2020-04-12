@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace NoNameDev.CSharpCommon.IO.AbstractFileSystem {
+namespace CSharpCommon.IO.AbstractFileSystem {
 
     public class PhysicalFileSystem : IFileSystem {
 

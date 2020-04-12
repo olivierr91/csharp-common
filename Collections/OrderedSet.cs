@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace NoNameDev.CSharpCommon.Extensions.Collections {
+namespace CSharpCommon.Extensions.Collections {
 
     public class OrderedSet<T> : ISet<T>, IReadOnlyCollection<T> {
         private readonly IDictionary<T, LinkedListNode<T>> _dictionary;

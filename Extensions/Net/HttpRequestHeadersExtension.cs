@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http.Headers;
 
-namespace NoNameDev.CSharpCommon.Extensions.Net {
+namespace CSharpCommon.Extensions.Net {
 
     public static class HttpRequestHeadersExtension {
 

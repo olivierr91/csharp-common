@@ -1,7 +1,7 @@
-﻿using NoNameDev.CSharpCommon.Utils;
+﻿using CSharpCommon.Utils;
 using System;
 
-namespace NoNameDev.CSharpCommon.TimeScheduling {
+namespace CSharpCommon.TimeScheduling {
 
     public class AnyTimeComponent : ITimeScheduleComponent {
         private int _maxValue;

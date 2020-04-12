@@ -1,0 +1,8 @@
+Avenue
+Boulevard
+Close
+Drive
+Lane
+Street
+View
+Way

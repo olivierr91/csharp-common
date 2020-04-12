@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace NoNameDev.CSharpCommon.Extensions {
+namespace CSharpCommon.Extensions {
 
     public static class ObjectExtensions {
 

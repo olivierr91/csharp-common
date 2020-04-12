@@ -1,10 +1,10 @@
-﻿using NoNameDev.CSharpCommon.Extensions.Reflection;
-using NoNameDev.CSharpCommon.Utils.Resources;
+﻿using CSharpCommon.Extensions.Reflection;
+using CSharpCommon.Utils.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NoNameDev.CSharpCommon.Extensions {
+namespace CSharpCommon.Extensions {
 
     public static class EnumExtensions {
 

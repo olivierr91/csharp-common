@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NoNameDev.CSharpCommon {
+namespace CSharpCommon {
 
     public class OrderAttribute : Attribute {
 

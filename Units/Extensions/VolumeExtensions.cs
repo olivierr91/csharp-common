@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NoNameDev.CSharpCommon.Units.Extensions {
+namespace CSharpCommon.Units.Extensions {
 
     public static class VolumeExtensions {
 

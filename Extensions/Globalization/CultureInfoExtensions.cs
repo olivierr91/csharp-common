@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 
-namespace NoNameDev.CSharpCommon.Extensions.Globalization {
+namespace CSharpCommon.Extensions.Globalization {
 
     public static class CultureInfoExtensions {
 
